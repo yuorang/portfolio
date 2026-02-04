@@ -421,19 +421,19 @@
     }
 
     .item-cursor_img01 {
-        background-image: url('/assets/imgs/cursor-hover_img01.png');
+        background-image: url('../imgs/cursor-hover_img01.png');
     }
 
     .item-cursor_img02 {
-        background-image: url('/assets/imgs/cursor-hover_img02.png');
+        background-image: url('../imgs/cursor-hover_img01.png');
     }
 
     .item-cursor_img03 {
-        background-image: url('/assets/imgs/cursor-hover_img03.png');
+        background-image: url('../imgs/cursor-hover_img01.png');
     }
 
     .item-cursor_img04 {
-        background-image: url('/assets/imgs/cursor-hover_img04.png');
+        background-image: url('../imgs/cursor-hover_img01.png');
     }
 
     .works-link:hover .item-cursor_img {
