@@ -216,16 +216,12 @@ $(function () {
 
     // header
     $(function () {
+        // 햄버거 버튼 클릭 시 메뉴 토글
         $('.hamburger').click(function (e) {
             e.preventDefault();
-
-            // ? 오버레이에 show 클래스 토글
             $('.nav-mobile-overlay').toggleClass('show');
-
-            // ? 햄버거 버튼에 active 클래스 토글 (X자 변경용)
             $(this).toggleClass('active');
 
-            // ? 메뉴가 열렸을 때 본문(body) 스크롤 막기 (매우 중요)
             if ($('.nav-mobile-overlay').hasClass('show')) {
                 $('body').css('overflow', 'hidden');
             } else {
@@ -233,8 +229,8 @@ $(function () {
             }
         });
 
-        // ? 추가: 메뉴 링크를 클릭했을 때 메뉴가 닫히도록 설정
-        $('.nav-mobile .menu-link').click(function () {
+        // 핵심 수정: .menu-link -> .mo-menu-link 로 변경
+        $('.mo-menu-link').click(function () {
             $('.nav-mobile-overlay').removeClass('show');
             $('.hamburger').removeClass('active');
             $('body').css('overflow', 'auto');
@@ -388,46 +384,46 @@ $(function () {
 
 
 
-    
+
     // works-card 각각에 직접 포함된 .item-cursor_img0*가 커서 따라다니기 (hover시만)
-    document.querySelectorAll('.works .right .works-card').forEach((card) => {
-        const img = card.querySelector('.item-cursor_img01, .item-cursor_img02, .item-cursor_img03, .item-cursor_img04');
-        if (!img) return;
+    // 전체 코드를 1024px 초과일 때만 실행되도록 조건문 추가
+    if (window.innerWidth > 1024) {
+        document.querySelectorAll('.works .right .works-card').forEach((card) => {
+            const img = card.querySelector('.item-cursor_img01, .item-cursor_img02, .item-cursor_img03, .item-cursor_img04');
+            if (!img) return;
 
-        // 초기에 숨기기, 위치 초기화(고정포지션따라)
-        gsap.set(img, {
-            opacity: 0,
-            x: 0,
-            y: 0
-        });
-
-        function moveImg(e) {
-            // 마우스 좌표(화면 전체 기준)
-            const mouseX = e.offsetX;
-            const mouseY = e.offsetY;
-
-            // fixed라서 viewport 기준으로 맞춤
-            gsap.to(img, {
-                x: mouseX,
-                y: mouseY,
-                duration: 0.21,
-                ease: "power2.out",
-                overwrite: "auto"
+            gsap.set(img, {
+                opacity: 0,
+                x: 0,
+                y: 0
             });
-        }
 
-        card.addEventListener("mouseenter", (e) => {
-            gsap.to(img, { opacity: 1, duration: 0.18, overwrite: 'auto', pointerEvents: 'none' });
-            // 바로 위치 한번 갱신
-            moveImg(e);
-            window.addEventListener("mousemove", moveImg);
-        });
+            function moveImg(e) {
+                // 마우스 좌표
+                const mouseX = e.offsetX;
+                const mouseY = e.offsetY;
 
-        card.addEventListener("mouseleave", (e) => {
-            gsap.to(img, { opacity: 0, duration: 0.18, overwrite: 'auto' });
-            window.removeEventListener("mousemove", moveImg);
+                gsap.to(img, {
+                    x: mouseX,
+                    y: mouseY,
+                    duration: 0.21,
+                    ease: "power2.out",
+                    overwrite: "auto"
+                });
+            }
+
+            card.addEventListener("mouseenter", (e) => {
+                gsap.to(img, { opacity: 1, duration: 0.18, overwrite: 'auto', pointerEvents: 'none' });
+                moveImg(e);
+                window.addEventListener("mousemove", moveImg);
+            });
+
+            card.addEventListener("mouseleave", (e) => {
+                gsap.to(img, { opacity: 0, duration: 0.18, overwrite: 'auto' });
+                window.removeEventListener("mousemove", moveImg);
+            });
         });
-    });
+    }
 
 
 

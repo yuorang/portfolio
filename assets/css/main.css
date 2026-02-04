@@ -423,12 +423,15 @@
     .item-cursor_img01 {
         background-image: url('/assets/imgs/cursor-hover_img01.png');
     }
+
     .item-cursor_img02 {
         background-image: url('/assets/imgs/cursor-hover_img02.png');
     }
+
     .item-cursor_img03 {
         background-image: url('/assets/imgs/cursor-hover_img03.png');
     }
+
     .item-cursor_img04 {
         background-image: url('/assets/imgs/cursor-hover_img04.png');
     }
@@ -673,6 +676,13 @@
         }
 
         /* section04 */
+        .item-cursor_img01,
+        .item-cursor_img02,
+        .item-cursor_img03,
+        .item-cursor_img04 {
+            display: none;
+        }
+
         .works-thumb {
             margin-top: 100px;
         }
