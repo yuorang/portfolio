@@ -262,7 +262,6 @@
         margin-top: 150px;
         position: relative;
         padding: 100px 0 180px;
-        overflow: hidden;
 
     }
 
@@ -329,7 +328,7 @@
         flex: 1;
         width: auto;
         padding-left: 50px;
-
+        overflow: hidden;
 
     }
 
@@ -378,6 +377,10 @@
         font-weight: 500;
 
         opacity: 0.8;
+    }
+
+    .works .right .work-meta .bl {
+        font-weight: 800;
     }
 
     .works .right img {
