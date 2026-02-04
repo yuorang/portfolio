@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+.mont {
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: -.8px;
+}
+
+body {
+    font-family: "Pretendard Variable", Pretendard, sans-serif;
+    font-weight: 600;
+    transition: 0.5s background-color;
+    background-color: #0e0e0e;
+    color: #fff;
+}
+
+body.dark {
+    background-color: #ffffff;
+    color: #0e0e0e;
+}
+
+
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    margin: -1px;
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #b3ec11;
+}
+
+.custom-cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    will-change: transform, opacity;
+    transition: opacity 0.2s;
+}
+
+.custom-cursor img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+}

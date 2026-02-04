@@ -1,0 +1,447 @@
+@import "./reset.css";
+@import "./common.css";
+
+/* header */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding: 15px 40px;
+    backdrop-filter: blur(5px);
+    border-bottom: .5px solid #3a3a3a;
+
+    overflow: hidden;
+    z-index: 100;
+    background: rgba(16, 16, 18, .937);
+    color: #fff;
+}
+
+.logo {
+    width: 80px;
+}
+
+.logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.menu-list {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 4vw, 40px);
+}
+
+.menu-item {
+    font-size: clamp(12px, 1.2vw, 14px);
+    white-space: nowrap;
+}
+
+.hamburger {
+    display: none;
+}
+
+.nav-mobile-overlay {
+    display: none;
+}
+
+/* footer */
+#footer {
+    padding: 300px 40px 50px;
+    color: #fff;
+
+    border-top: 1px solid #3a3a3a;
+}
+
+#footer .footer-title {
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+    position: relative;
+}
+
+.marquee-wrapper {
+    display: flex;
+    /* PC에서는 정렬을 위해 flex */
+    justify-content: center;
+    /* 중앙 정렬 */
+    width: 100%;
+}
+
+#footer .footer-title p {
+    font-size: 16vw;
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    flex-shrink: 0;
+    /* 크기 유지 */
+}
+
+/* PC에서는 첫 번째 p만 남기고 나머지는 숨김 (스포트라이트 집중) */
+.marquee-wrapper p:not(:first-child) {
+    display: none;
+}
+
+#footer .contact-info .social-list {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 30px;
+
+    width: 60%;
+    margin: 0 auto;
+
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+
+}
+
+#footer .footer-cta {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 공통 버튼 */
+#footer .footer-cta .btn-cta {
+    position: relative;
+    overflow: hidden;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 10px 22px;
+    border: 1px solid #fff;
+    border-radius: 999px;
+
+    color: #fff;
+    background: transparent;
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+
+    transition: color 0.45s ease;
+}
+
+#footer .footer-cta .direction {
+    margin-right: auto;
+}
+
+#footer .footer-cta .backToTop {
+    margin-left: auto;
+}
+
+#footer .footer-cta .btn-cta::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+    background: #fff;
+
+    transform: translateY(100%);
+    transition: transform 0.45s ease;
+    z-index: 0;
+}
+
+#footer .footer-cta .btn-cta:hover::before {
+    transform: scaleY(1);
+    transform-origin: bottom;
+}
+
+#footer .footer-cta .btn-cta:not(:hover)::before {
+    transform: scaleY(0);
+    transform-origin: top;
+}
+
+#footer .footer-cta .btn-cta:hover {
+    color: #000;
+}
+
+#footer .footer-cta .text {
+    position: relative;
+    z-index: 2;
+}
+
+#footer .footer-cta .btn-arrow {
+    position: relative;
+    z-index: 2;
+
+    width: 34px;
+    height: 34px;
+
+    background-color: #fff;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+#footer .footer-cta .btn-cta:hover .btn-arrow {
+    background-color: #000;
+}
+
+#footer .footer-cta .btn-arrow svg {
+    position: absolute;
+    transition: transform 0.4s ease;
+}
+
+#footer .footer-cta .btn-arrow .btn-right_default {
+    transform: translateX(0);
+}
+
+#footer .footer-cta .btn-arrow .btn-right_hover {
+    transform: translateX(-300%);
+}
+
+#footer .footer-cta .btn-cta:hover .btn-right_default {
+    transform: translateX(300%);
+}
+
+#footer .footer-cta .btn-cta:hover .btn-right_hover {
+    transform: translateX(0);
+}
+
+#footer .footer-cta .btn-arrow .btn-top_default {
+    transform: translateY(0);
+}
+
+#footer .footer-cta .btn-arrow .btn-top_hover {
+    transform: translateY(300%);
+}
+
+#footer .footer-cta .btn-cta:hover .btn-top_default {
+    transform: translateY(-300%);
+}
+
+#footer .footer-cta .btn-cta:hover .btn-top_hover {
+    transform: translateY(0);
+}
+
+#footer .footer-cta .btn-arrow svg:first-child path {
+    fill: #000;
+}
+
+#footer .footer-cta .btn-arrow svg:last-child path {
+    fill: #fff;
+}
+
+#footer .footer-bottom {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+#footer .footer-bottom .copyright {
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+
+    flex: 1;
+    justify-content: flex-start;
+}
+
+#footer .footer-bottom .credits {
+    font-size: 12px;
+    font-weight: 400;
+    flex: 1;
+    text-align: right;
+
+}
+
+/* Desktop */
+@media (max-width: 1024px) {
+
+    /* header */
+    #header {
+        padding: 10px 40px;
+        z-index: 9000;
+    }
+
+    .menu-list {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+    }
+
+    .hamburger span {
+        width: 30px;
+        height: 2px;
+        background: #b3ec11;
+        transition: all .8s cubic-bezier(.19, 1, .22, 1);
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(4px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        transform: translateY(-4px) rotate(-45deg);
+    }
+
+    .nav-mobile-overlay {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        padding: 100px 40px 50px 0;
+        z-index: 1000;
+        background: #101012;
+
+        transform: translateX(100%);
+        visibility: hidden;
+        transition: transform .6s ease-in-out, visibility .6s;
+    }
+
+    .nav-mobile-overlay .nav-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-size: 5vw;
+        color: #fff;
+        font-weight: 500;
+        gap: 30px;
+    }
+
+    .nav-mobile-overlay.show {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    /* footer */
+    .marquee-wrapper {
+        display: inline-flex;
+        animation: infinite-marquee 10s linear infinite;
+        justify-content: flex-start;
+        width: auto;
+    }
+
+    .marquee-wrapper p {
+        display: block !important;
+        width: auto !important;
+        padding-right: 50px;
+        -webkit-text-fill-color: initial !important;
+        -webkit-text-stroke: 0px !important;
+        opacity: 1 !important;
+    }
+
+    @keyframes infinite-marquee {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-33.333%);
+        }
+    }
+
+    #footer .contact-info .social-list {
+        padding: 20px 0;
+        font-size: 16px;
+    }
+
+    #footer .footer-cta .btn-cta {
+        padding: 8px 20px;
+        font-size: 12px;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+
+        /* header */
+        #header {
+            padding: 10px 16px;
+        }
+
+        .nav-mobile-overlay .nav-mobile {
+            font-size: clamp(2rem, 5vw, 3rem);
+            gap: 15px;
+        }
+
+        /* footer */
+        #footer {
+            padding: 150px 18px 30px;
+            border-top: none;
+        }
+
+        #footer .footer-title p {
+            font-size: 15vw;
+        }
+
+        #footer .contact-info .social-list {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            font-size: clamp(14px, .8vw, 20px);
+            margin: 30px auto;
+        }
+
+        #footer .footer-cta {
+            margin-top: 0px;
+
+            gap: 10px;
+        }
+
+        #footer .footer-cta {
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #footer .footer-cta .btn-cta {
+            padding: 8px 10px;
+            font-size: 10px;
+            font-weight: 400;
+            gap: 8px;
+        }
+
+        #footer .footer-bottom {
+            justify-content: center;
+            align-items: center;
+
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0.5;
+        }
+
+    }
+}
