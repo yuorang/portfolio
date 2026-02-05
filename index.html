@@ -21,31 +21,32 @@
     <!-- gsap -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-
     <!-- lenis -->
     <script src="https://unpkg.com/lenis@1.3.15/dist/lenis.min.js"></script>
 </head>
 
 <body>
     <!-- 커서 -->
-    <div class="custom-cursor"><img src="./assets/imgs/Vector.png" alt=""></div>
-    <!-- landing-intro -->
+    <div class="custom-cursor" aria-hidden="true">
+        <img src="./assets/imgs/Vector.png" alt="">
+    </div>
+    <!-- 랜딩페이지 -->
     <div class="landing-intro">
         <div class="slide-bg02"></div>
         <div class="slide-bg01">
             <div class="cont-wrap">
-                <div class="intro-title">
+                <h1 class="intro-title">
                     <span class="text">Standards-Based</span>
                     <span class="text">Web Publisher</span>
-                </div>
+                </h1>
             </div>
         </div>
     </div>
-
+    <!-- header -->
     <header id="header">
         <h1 class="logo">
             <a href="#">
-                <img src="./assets/imgs/logo.svg">
+                <img src="./assets/imgs/logo.svg" alt="Web Publisher Portfolio Home">
             </a>
         </h1>
         <nav class="menu">
@@ -55,57 +56,57 @@
                 <li class="menu-item"><a href="#section05" class="menu-link upper">My Approach</a></li>
                 <li class="menu-item"><a href="#footer" class="menu-link upper">contact</a></li>
             </ul>
-            <!-- 햄버거 버튼 -->
-            <button class="hamburger" aria-label="menu">
+            <!-- 모바일 햄버거 메뉴 -->
+            <button class="hamburger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-menu">
                 <span></span>
                 <span></span>
             </button>
         </nav>
     </header>
-    <!-- mo-menu open -->
-    <div class="nav-mobile-overlay">
-        <ul class="nav-mobile">
-            <li class="mo-menu-item">
-                <a href="#section03" class="mo-menu-link upper">about</a>
-            </li>
-            <li class="mo-menu-item">
-                <a href="#section04" class="mo-menu-link upper">works</a>
-            </li>
-            <li class="mo-menu-item">
-                <a href="#section05" class="mo-menu-link upper">My Approach</a>
-            </li>
-            <li class="mo-menu-item">
-                <a href="#footer" class="mo-menu-link upper">contact</a>
-            </li>
-        </ul>
+    <!-- 모바일 햄버거 오픈-->
+    <div id="main-menu" class="nav-mobile-overlay" role="dialog" aria-modal="true" aria-label="모바일 메뉴">
+        <nav>
+            <ul class="nav-mobile">
+                <li class="mo-menu-item">
+                    <a href="#section03" class="mo-menu-link upper">about</a>
+                </li>
+                <li class="mo-menu-item">
+                    <a href="#section04" class="mo-menu-link upper">works</a>
+                </li>
+                <li class="mo-menu-item">
+                    <a href="#section05" class="mo-menu-link upper">My Approach</a>
+                </li>
+                <li class="mo-menu-item">
+                    <a href="#footer" class="mo-menu-link upper">contact</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
     <main id="main">
-        <!-- main-visual -->
         <section class="main-visual">
             <h2 class="blind">Where ideas races to victory!</h2>
             <div class="hero-main">
                 <div class="hero-text">
                     <p class="hero-title">
-                        <span class="bold">Accessible</span>
-                        Web,<br>
-                        <span class="bold">Clear</span>
-                        Markup
+                        <span class="bold">Accessible</span> Web,<br>
+                        <span class="bold">Clear</span> Markup
                     </p>
                     <p class="hero-title">by
                         <span class="bold">Yujin Shin</span>
                     </p>
                 </div>
-                <img src="./assets/imgs/greenArrow.svg" alt="slide down" class="hero-arrow">
+                <img src="./assets/imgs/greenArrow.svg" alt="아래로 스크롤" class="hero-arrow">
             </div>
+
             <div class="hero-footer">
                 <div class="explore-box">
                     <a href="#section04" class="upper">Explore works</a>
                 </div>
                 <div class="play-box">
-                    <a href="#section04" class="upper">
-                        <i class="fa-solid fa-play"></i>
-                        <video autoplay loop muted playsinline preload="metadata">
+                    <a href="#section04" class="upper" aria-label="작업물 영상 보기">
+                        <i class="fa-solid fa-play" aria-hidden="true"></i>
+                        <video autoplay loop muted playsinline preload="metadata" aria-hidden="true">
                             <source src="./assets/imgs/3188-166339073_small.mp4" type="video/mp4">
                         </video>
                     </a>
@@ -117,25 +118,29 @@
             </div>
         </section>
 
-        <!-- about -->
-        <section id="section03">
-            <h2 class="title">Standards-Based <br> Web Publisher</h2>
-            <p class="desc">
-                웹 표준과 접근성을 고려한 마크업을 바탕으로
-                안정적이고 일관된 UI를 구현하는 웹 퍼블리셔입니다. <br>
-                디자인의 의도를 정확히 이해하고,
-                서비스 흐름에 맞는 인터랙션을 통해 사용 경험을 개선하는 데 집중합니다.
-                <br>
-                단순히 화면을 구현하는 데서 그치지 않고,
-                유지보수와 확장성을 함께 고민하며 <br>
-                오래 사용될 수 있는 웹을 만드는 것을 목표로 합니다.
-            </p>
+        <section id="section03" aria-labelledby="about-title">
+            <h2 id="about-title" class="title">
+                Standards-Based <br>
+                Web Publisher
+            </h2>
+            <div class="desc-wrap">
+                <p class="desc">
+                    웹 표준과 접근성을 고려한 마크업을 바탕으로
+                    안정적이고 일관된 UI를 구현하는 웹 퍼블리셔입니다. <br>
+                    디자인의 의도를 정확히 이해하고,
+                    서비스 흐름에 맞는 인터랙션을 통해 사용 경험을 개선하는 데 집중합니다.
+                </p>
+                <p class="desc">
+                    단순히 화면을 구현하는 데서 그치지 않고,
+                    유지보수와 확장성을 함께 고민하며 <br>
+                    오래 사용될 수 있는 웹을 만드는 것을 목표로 합니다.
+                </p>
+            </div>
         </section>
+        <section id="section04" aria-labelledby="works-title">
+            <h2 id="works-title" class="blind">SELECTED WORKS</h2>
 
-        <!-- selected works -->
-        <section id="section04">
-            <h2 class="blind">SELECTED WORKS</h2>
-            <div class="works-thumb">
+            <div class="works-thumb" aria-hidden="true">
                 <h3 class="viewTitle-up mont">SELECTED</h3>
                 <div class="viewTitle-down">
                     <div class="video-wrap">
@@ -146,94 +151,102 @@
                     <span class="mont">WORKS</span>
                 </div>
             </div>
+
             <div class="works mont">
                 <div class="flex-area">
-                    <div class="left">
+                    <nav class="left" aria-label="Project Code Reviews">
                         <a href="https://oxidized-lock-df6.notion.site/NAVER-2fcd289ff5988040921bf15aa99d0553?source=copy_link"
-                            class="works-link">
+                            class="works-link" target="_blank" title="새 창 열림">
                             <span class="crbold">NAVER</span> CODE REVIEW
                         </a>
                         <a href="https://oxidized-lock-df6.notion.site/Postevand-2fcd289ff598809aa118c2015b80c1f2?source=copy_link"
-                            class="works-link">
+                            class="works-link" target="_blank" title="새 창 열림">
                             <span class="crbold">POSTEVAND</span> CODE REVIEW
                         </a>
                         <a href="https://oxidized-lock-df6.notion.site/2fcd289ff598805f9735d52ccf4c951a?source=copy_link"
-                            class="works-link">
+                            class="works-link" target="_blank" title="새 창 열림">
                             <span class="crbold">엔터프라이즈블록체인</span> CODE REVIEW
                         </a>
                         <a href="https://oxidized-lock-df6.notion.site/2fcd289ff59880b9bb30dbdf75fed1c2?source=copy_link"
-                            class="works-link">
+                            class="works-link" target="_blank" title="새 창 열림">
                             <span class="crbold">HYUNDACARD</span> CODE REVIEW
                         </a>
-                    </div>
+                    </nav>
+
                     <div class="right mont">
                         <article class="works-card">
-                            <a href=" https://yuorang.github.io/naver/" class="works-link">
+                            <a href="https://yuorang.github.io/naver/" class="works-link"
+                                aria-label="네이버 PC 클론코딩 프로젝트 상세보기">
                                 <div class="item-inner">
                                     <div class="works-text">
                                         <p class="work-title upper">naver</p>
-                                        <p class="work-meta upper"><span class="bl">PC</span>#clone coding #퍼블리싱100%
+                                        <p class="work-meta upper"><span class="bl">PC</span> #clone coding #퍼블리싱100%
                                             #HTML #CSS</p>
                                     </div>
-                                    <img src="./assets/imgs/arrowright.svg">
+                                    <img src="./assets/imgs/arrowright.svg" alt="">
                                 </div>
-                                <div class="item-cursor_img01"></div>
+                                <div class="item-cursor_img01" aria-hidden="true"></div>
                             </a>
                         </article>
+
                         <article class="works-card">
-                            <a href="https://yuorang.github.io/postevand/" class="works-link">
+                            <a href="https://yuorang.github.io/postevand/" class="works-link"
+                                aria-label="Postevand 반응형 웹 프로젝트 상세보기">
                                 <div class="item-inner">
                                     <div class="works-text">
                                         <p class="work-title">Postevand</p>
                                         <p class="work-meta upper"><span class="bl">#반응형 웹</span> #퍼블리싱100% #HTML #CSS
-                                            #GSAP #JavaScript(ES6+)
-                                        </p>
+                                            #GSAP #JavaScript(ES6+)</p>
                                     </div>
-                                    <img src="./assets/imgs/arrowright.svg">
+                                    <img src="./assets/imgs/arrowright.svg" alt="">
                                 </div>
-                                <div class="item-cursor_img02"></div>
+                                <div class="item-cursor_img02" aria-hidden="true"></div>
                             </a>
                         </article>
+
                         <article class="works-card">
-                            <a href="https://yuorang.github.io/enterprizeblockchain/" class="works-link">
+                            <a href="https://yuorang.github.io/enterprizeblockchain/" class="works-link"
+                                aria-label="엔터프라이즈블록체인 프로젝트 상세보기">
                                 <div class="item-inner">
                                     <div class="works-text">
                                         <p class="work-title upper">엔터프라이즈블록체인</p>
-                                        <p class="work-meta upper"><span class="bl">PC</span>#퍼블리싱100% #HTML #CSS #GSAP
+                                        <p class="work-meta upper"><span class="bl">PC</span> #퍼블리싱100% #HTML #CSS #GSAP
                                             #JavaScript(ES6+)</p>
                                     </div>
-                                    <img src="./assets/imgs/arrowright.svg">
+                                    <img src="./assets/imgs/arrowright.svg" alt="">
                                 </div>
-                                <div class="item-cursor_img03"></div>
+                                <div class="item-cursor_img03" aria-hidden="true"></div>
                             </a>
                         </article>
+
                         <article class="works-card">
-                            <a href="https://yuorang.github.io/hyundaicard/" class="works-link">
+                            <a href="https://yuorang.github.io/hyundaicard/" class="works-link"
+                                aria-label="현대카드 프로젝트 상세보기">
                                 <div class="item-inner">
                                     <div class="works-text">
                                         <p class="work-title">HyundaiCard</p>
-                                        <p class="work-meta upper"><span class="bl">PC</span>#퍼블리싱100% #HTML #CSS #GSAP
+                                        <p class="work-meta upper"><span class="bl">PC</span> #퍼블리싱100% #HTML #CSS #GSAP
                                             #JavaScript(ES6+)</p>
                                     </div>
-                                    <img src="./assets/imgs/arrowright.svg">
+                                    <img src="./assets/imgs/arrowright.svg" alt="">
                                 </div>
-                                <div class="item-cursor_img04"></div>
+                                <div class="item-cursor_img04" aria-hidden="true"></div>
                             </a>
                         </article>
+
                         <div class="bottom">
                             <p class="brand-statement">— STANDARDS FIRST</p>
                             <p class="brand-statement">SOLUTION FOR USERS</p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- My Approach -->
-        <section id="section05">
-            <h2 class="blind">My Approach</h2>
-            <div class="left">
+        <section id="section05" aria-labelledby="approach-title">
+            <h2 id="approach-title" class="blind">My Approach</h2>
+
+            <div class="left" aria-hidden="true">
                 <div class="service-desc mont">
                     <p class="service-category">My Markup Principles</p>
                     <p class="service-category">Accessibility Checklist</p>
@@ -241,6 +254,7 @@
                     <p class="service-category">Problem → Solution</p>
                 </div>
             </div>
+
             <div class="right">
                 <p class="service-title mont">
                     My Approach
@@ -256,12 +270,13 @@
                 <ul class="arcodien-list">
                     <li class="accordion-item">
                         <div class="accordion-text">
-                            <div class="top">
-                                <p class="accordion-title mont">My Markup Principles</p>
-                                <i class="fa-sharp fa-thin fa-plus"></i>
-                            </div>
+                            <button type="button" class="top" aria-expanded="false" aria-controls="content-01"
+                                id="accordion-header-01">
+                                <span class="accordion-title mont">My Markup Principles</span>
+                                <i class="fa-sharp fa-thin fa-plus" aria-hidden="true"></i>
+                            </button>
 
-                            <div class="hidden">
+                            <div id="content-01" class="hidden" role="region" aria-labelledby="accordion-header-01">
                                 <h3 class="accordion-sub">(마크업을 대하는 기준)</h3>
                                 <p class="accordion-desc">
                                     저는 보이는 화면을 구현하는 것보다,
@@ -282,7 +297,7 @@
                                     작은 요소 하나라도 “왜 이 태그여야 하는지”,
                                     “이 구조가 나중에도 이해되기 쉬운지”를 고민하며 마크업합니다.
                                 </div>
-                                <ul class="label-group">
+                                <ul class="label-group" aria-label="Markup Keywords">
                                     <li class="label">Semantic Markup</li>
                                     <li class="label">Structure First</li>
                                     <li class="label">Maintainable Code</li>
@@ -293,12 +308,13 @@
 
                     <li class="accordion-item">
                         <div class="accordion-text">
-                            <div class="top">
-                                <p class="accordion-title mont">Accessibility Checklist</p>
-                                <i class="fa-sharp fa-thin fa-plus"></i>
-                            </div>
+                            <button type="button" class="top" aria-expanded="false" aria-controls="content-02"
+                                id="accordion-header-02">
+                                <span class="accordion-title mont">Accessibility Checklist</span>
+                                <i class="fa-sharp fa-thin fa-plus" aria-hidden="true"></i>
+                            </button>
 
-                            <div class="hidden">
+                            <div id="content-02" class="hidden" role="region" aria-labelledby="accordion-header-02">
                                 <h3 class="accordion-sub">(접근성을 위한 기본 점검 항목)</h3>
                                 <p class="accordion-desc">
                                     모든 사용자가 화면을 이해하고 사용할 수 있어야 한다는 관점에서,
@@ -320,7 +336,7 @@
                                     기본 원칙을 이해하고 적용하려는 태도를 바탕으로
                                     접근성을 고려한 화면 구현에 점차 익숙해지고자 합니다.
                                 </div>
-                                <ul class="label-group">
+                                <ul class="label-group" aria-label="Accessibility Keywords">
                                     <li class="label">Accessibility</li>
                                     <li class="label">Keyboard Focus</li>
                                     <li class="label">Color Contrast</li>
@@ -331,12 +347,13 @@
 
                     <li class="accordion-item">
                         <div class="accordion-text">
-                            <div class="top">
-                                <p class="accordion-title mont">How I Study</p>
-                                <i class="fa-sharp fa-thin fa-plus"></i>
-                            </div>
+                            <button type="button" class="top" aria-expanded="false" aria-controls="content-03"
+                                id="accordion-header-03">
+                                <span class="accordion-title mont">How I Study</span>
+                                <i class="fa-sharp fa-thin fa-plus" aria-hidden="true"></i>
+                            </button>
 
-                            <div class="hidden">
+                            <div id="content-03" class="hidden" role="region" aria-labelledby="accordion-header-03">
                                 <h3 class="accordion-sub">(공부 방식)</h3>
                                 <p class="accordion-desc">
                                     저는 개념을 이해하지 않고 따라 치는 방식보다는,
@@ -355,7 +372,7 @@
                                     기기마다 화면이 어떻게 보이는지를 확인하는 과정 자체가 중요하다고 생각해
                                     가능한 범위 내에서 점검하며 작업하고 있습니다.
                                 </div>
-                                <ul class="label-group">
+                                <ul class="label-group" aria-label="Study Keywords">
                                     <li class="label">Practice-Based Learning</li>
                                     <li class="label">Structure-Oriented Study</li>
                                     <li class="label">Hands-on Practice</li>
@@ -366,12 +383,13 @@
 
                     <li class="accordion-item">
                         <div class="accordion-text">
-                            <div class="top">
-                                <p class="accordion-title mont">Problem → Solution</p>
-                                <i class="fa-sharp fa-thin fa-plus"></i>
-                            </div>
+                            <button type="button" class="top" aria-expanded="false" aria-controls="content-04"
+                                id="accordion-header-04">
+                                <span class="accordion-title mont">Problem → Solution</span>
+                                <i class="fa-sharp fa-thin fa-plus" aria-hidden="true"></i>
+                            </button>
 
-                            <div class="hidden">
+                            <div id="content-04" class="hidden" role="region" aria-labelledby="accordion-header-04">
                                 <h3 class="accordion-sub">(문제를 해결하는 방식)</h3>
                                 <div class="accordion-desc">
                                     구현 과정에서 문제가 발생하면,
@@ -390,7 +408,7 @@
                                     간단하게라도 기록해 두고,
                                     같은 문제가 반복되지 않도록 기준을 정리하려고 합니다.
                                 </div>
-                                <ul class="label-group">
+                                <ul class="label-group" aria-label="Solution Keywords">
                                     <li class="label">Problem Decomposition</li>
                                     <li class="label">Reasonable Code</li>
                                     <li class="label">AI-Assisted Workflow</li>
@@ -403,8 +421,10 @@
         </section>
     </main>
 
-    <footer id="footer">
-        <div class="footer-title">
+    <footer id="footer" aria-labelledby="footer-heading">
+        <h2 id="footer-heading" class="blind">Contact & Site Info</h2>
+
+        <div class="footer-title" role="presentation">
             <div class="marquee-wrapper">
                 <p>SHIN YU JIN</p>
                 <p aria-hidden="true">PORTFOLIO</p>
@@ -416,30 +436,37 @@
         </div>
 
         <div class="contact-info">
-            <ul class="social-list">
+            <ul class="social-list" aria-label="Contact and Social Links">
                 <li class="social-item">
-                    <a href="mailto:syj20110@naver.com" class="footer-email upper">
+                    <a href="mailto:syj20110@naver.com" class="footer-email upper" title="이메일 보내기">
                         <span>syj20110@naver.com</span>
                     </a>
                 </li>
                 <li class="social-item">
-                    <a href="tel:+821057608751" class="footer-phone">
+                    <a href="tel:+821057608751" class="footer-phone" title="전화 걸기">
                         <span>+82 10-5760-8751</span>
                     </a>
                 </li>
-                <li class="social-item"><a href="https://github.com/yuorang" class="social-link upper">github</a></li>
-                <li class="social-item"><a
-                        href="https://oxidized-lock-df6.notion.site/2fcd289ff59880f488eec1f29e109481?source=copy_link"
-                        class="social-link upper">notion</a></li>
+                <li class="social-item">
+                    <a href="https://github.com/yuorang" class="social-link upper" target="_blank" title="깃허브 새 창 열림">
+                        github
+                    </a>
+                </li>
+                <li class="social-item">
+                    <a href="https://oxidized-lock-df6.notion.site/2fcd289ff59880f488eec1f29e109481?source=copy_link"
+                        class="social-link upper" target="_blank" title="노션 포트폴리오 새 창 열림">
+                        notion
+                    </a>
+                </li>
             </ul>
         </div>
 
         <div class="footer-cta">
             <div class="left">
-                <a href="#section04" class="direction btn-cta upper">
+                <a href="#section04" class="direction btn-cta upper" aria-label="Selected Works 섹션으로 이동">
                     <span class="text">View works</span>
-                    <span class="btn-arrow">
-                        <svg class="btn-right_default " width="8" height="14" viewBox="0 0 8 14" fill="none"
+                    <span class="btn-arrow" aria-hidden="true">
+                        <svg class="btn-right_default" width="8" height="14" viewBox="0 0 8 14" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M7.61071 7.66432C7.94794 7.32709 7.94794 6.78033 7.61071 6.4431L2.11522 0.947617C1.77799 0.610387 1.23124 0.610387 0.894006 0.947617C0.556776 1.28485 0.556776 1.83161 0.894006 2.16884L5.77888 7.05371L0.894006 11.9386C0.556776 12.2758 0.556776 12.8226 0.894006 13.1598C1.23124 13.497 1.77799 13.497 2.11522 13.1598L7.61071 7.66432ZM7 7.91724H7.0001V6.19018H7V7.91724Z"
@@ -455,9 +482,9 @@
                 </a>
             </div>
             <div class="right">
-                <a class="backToTop btn-cta upper">
+                <a href="#" class="backToTop btn-cta upper" aria-label="페이지 맨 위로 이동">
                     <span class="text">top</span>
-                    <span class="btn-arrow">
+                    <span class="btn-arrow" aria-hidden="true">
                         <svg class="btn-top_default" width="12" height="7" viewBox="0 0 12 7" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -476,12 +503,11 @@
         </div>
 
         <div class="footer-bottom">
-            <div class="copyright">&copy;2026 Yujin Shin. All rights reserved.</div>
+            <div class="copyright">&copy; 2026 Yujin Shin. All rights reserved.</div>
             <div class="credits">
                 <span class="credits-text">Web Publishing by Yujin Shin</span>
             </div>
         </div>
-
     </footer>
 </body>
 

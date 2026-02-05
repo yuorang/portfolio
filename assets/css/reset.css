@@ -5,15 +5,18 @@
     color: inherit;
     box-sizing: border-box;
 }
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
+
 html,
 body {
     height: 100%;
 }
+
 img,
 picture,
 video,
@@ -22,19 +25,23 @@ svg {
     display: block;
     max-width: 100%;
 }
+
 button {
     background: none;
     border: 0;
     cursor: pointer;
 }
+
 a {
     text-decoration: none;
     display: block;
 }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
 ul {
     list-style: none;
 }
