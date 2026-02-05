@@ -405,15 +405,50 @@
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 10;
+        transform: translate(-50%, -50%);
+        will-change: transform;
         width: 480px;
         height: 320px;
+
+        border-radius: 10px;
         background-size: cover;
         background-position: center;
-        border-radius: 10px;
-        box-shadow: 0 10px 10px 0 rgba(31, 31, 32, 0.35),
-            0 2px 8px 0 rgba(62, 62, 62, 0.08);
         opacity: 0;
+        pointer-events: none;
+        z-index: 10;
+
+        /* 그림자 추가 */
+        box-shadow: 0 10px 10px 0 rgba(31, 31, 32, 0.35), 0 2px 8px 0 rgba(62, 62, 62, 0.08);
+    }
+
+    /* 각 아이템별 실제 이미지 경로 설정 */
+    .item-cursor_img01 {
+        background-image: url('../imgs/cursor-hover_img01.png');
+    }
+
+    .item-cursor_img02 {
+        background-image: url('../imgs/cursor-hover_img02.png');
+    }
+
+    .item-cursor_img03 {
+        background-image: url('../imgs/cursor-hover_img03.png');
+    }
+
+    .item-cursor_img04 {
+        background-image: url('../imgs/cursor-hover_img04.png');
+    }
+
+    /* 링크에 호버했을 때 이미지가 나타나도록 설정 */
+    .works-link:hover .item-cursor_img {
+        opacity: 1;
+    }
+
+    .works .bottom {
+        margin-top: 150px;
+    }
+
+    .works .bottom .brand-statement {
+        font-size: clamp(28px, 3vw, 40px);
     }
 
     /* section05 */
