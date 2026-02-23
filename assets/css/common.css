@@ -53,23 +53,31 @@
    }
 
    /* CUSTOM CURSOR */
-   .custom-cursor {
+   .cursor-trail {
        position: fixed;
        top: 0;
        left: 0;
-       z-index: 10000;
+
        width: 20px;
        height: 20px;
+       border-radius: 50%;
+       background: #fff;
+
        pointer-events: none;
-       will-change: transform, opacity;
-       transform: translate(-50%, -50%);
-       transition: opacity 0.2s;
+       z-index: 9999;
+
+       mix-blend-mode: difference;
+
+       opacity: 0.9;
+       transform: translate(-50%, -50%) scale(1);
+       transition: transform 0.3s ease, opacity 0.3s ease;
    }
 
-   .custom-cursor img {
-       display: block;
-       width: 100%;
-       height: 100%;
-       pointer-events: none;
-       user-select: none;
+   /* JS class 토글로 제어 */
+   .cursor-trail.is-hidden {
+       opacity: 0;
+   }
+
+   .cursor-trail.is-big {
+       transform: translate(-50%, -50%) scale(4);
    }

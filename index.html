@@ -27,9 +27,7 @@
 
 <body>
     <!-- 커서 -->
-    <div class="custom-cursor" aria-hidden="true">
-        <img src="./assets/imgs/cursor.png" alt="">
-    </div>
+    <div class="cursor-trail"></div>
     <!-- 랜딩페이지 -->
     <div class="landing-intro">
         <div class="slide-bg02"></div>
@@ -51,10 +49,10 @@
         </h1>
         <nav class="menu">
             <ul class="menu-list">
-                <li class="menu-item"><a href="#section03" class="menu-link upper">about</a></li>
-                <li class="menu-item"><a href="#section04" class="menu-link upper">works</a></li>
-                <li class="menu-item"><a href="#section05" class="menu-link upper">My Approach</a></li>
-                <li class="menu-item"><a href="#footer" class="menu-link upper">contact</a></li>
+                <li class="menu-item big-cursor"><a href="#section03" class="menu-link upper">about</a></li>
+                <li class="menu-item big-cursor"><a href="#section04" class="menu-link upper">works</a></li>
+                <li class="menu-item big-cursor"><a href="#section05" class="menu-link upper">My Approach</a></li>
+                <li class="menu-item big-cursor"><a href="#footer" class="menu-link upper">contact</a></li>
             </ul>
             <!-- 모바일 햄버거 메뉴 -->
             <button class="hamburger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-menu">
@@ -101,10 +99,10 @@
 
             <div class="hero-footer">
                 <div class="explore-box">
-                    <a href="#section04" class="upper">Explore works</a>
+                    <a href="#section04" class="upper big-cursor">Explore works</a>
                 </div>
                 <div class="play-box">
-                    <a href="#section04" class="upper" aria-label="작업물 영상 보기">
+                    <a href="#section04" class="upper big-cursor" aria-label="작업물 영상 보기">
                         <i class="fa-solid fa-play" aria-hidden="true"></i>
                         <video autoplay loop muted playsinline preload="metadata" aria-hidden="true">
                             <source src="./assets/imgs/play-box_video.mp4" type="video/mp4">
@@ -137,6 +135,7 @@
                 </p>
             </div>
         </section>
+
         <section id="section04" aria-labelledby="works-title">
             <h2 id="works-title" class="blind">SELECTED WORKS</h2>
 
@@ -156,25 +155,25 @@
                 <div class="flex-area">
                     <nav class="left" aria-label="Project Code Reviews">
                         <a href="https://oxidized-lock-df6.notion.site/NAVER-2fcd289ff5988040921bf15aa99d0553?source=copy_link"
-                            class="works-link" target="_blank" title="새 창 열림">
+                            class="works-link big-cursor" target="_blank" title="새 창 열림">
                             <span class="crbold">NAVER</span> CODE REVIEW
                         </a>
                         <a href="https://oxidized-lock-df6.notion.site/Postevand-2fcd289ff598809aa118c2015b80c1f2?source=copy_link"
-                            class="works-link" target="_blank" title="새 창 열림">
+                            class="works-link big-cursor" target="_blank" title="새 창 열림">
                             <span class="crbold">POSTEVAND</span> CODE REVIEW
                         </a>
                         <a href="https://oxidized-lock-df6.notion.site/2fcd289ff598805f9735d52ccf4c951a?source=copy_link"
-                            class="works-link" target="_blank" title="새 창 열림">
+                            class="works-link big-cursor" target="_blank" title="새 창 열림">
                             <span class="crbold">엔터프라이즈블록체인</span> CODE REVIEW
                         </a>
                         <a href="https://oxidized-lock-df6.notion.site/2fcd289ff59880b9bb30dbdf75fed1c2?source=copy_link"
-                            class="works-link" target="_blank" title="새 창 열림">
+                            class="works-link big-cursor" target="_blank" title="새 창 열림">
                             <span class="crbold">HYUNDACARD</span> CODE REVIEW
                         </a>
                     </nav>
 
                     <div class="right mont">
-                        <article class="works-card">
+                        <article class="works-card no-cursor" data-preview="assets/imgs/cursor-hover_img01.png">
                             <a href="https://yuorang.github.io/naver/" class="works-link"
                                 aria-label="네이버 PC 클론코딩 프로젝트 상세보기">
                                 <div class="item-inner">
@@ -185,11 +184,10 @@
                                     </div>
                                     <img src="./assets/imgs/work-arrow.svg" alt="">
                                 </div>
-                                <div class="item-cursor_img01" aria-hidden="true"></div>
                             </a>
                         </article>
 
-                        <article class="works-card">
+                        <article class="works-card no-cursor" data-preview="assets/imgs/cursor-hover_img02.png">
                             <a href="https://yuorang.github.io/postevand/" class="works-link"
                                 aria-label="Postevand 반응형 웹 프로젝트 상세보기">
                                 <div class="item-inner">
@@ -200,11 +198,10 @@
                                     </div>
                                     <img src="./assets/imgs/work-arrow.svg" alt="">
                                 </div>
-                                <div class="item-cursor_img02" aria-hidden="true"></div>
                             </a>
                         </article>
 
-                        <article class="works-card">
+                        <article class="works-card no-cursor" data-preview="assets/imgs/cursor-hover_img03.png">
                             <a href="https://yuorang.github.io/enterprizeblockchain/" class="works-link"
                                 aria-label="엔터프라이즈블록체인 프로젝트 상세보기">
                                 <div class="item-inner">
@@ -215,11 +212,10 @@
                                     </div>
                                     <img src="./assets/imgs/work-arrow.svg" alt="">
                                 </div>
-                                <div class="item-cursor_img03" aria-hidden="true"></div>
                             </a>
                         </article>
 
-                        <article class="works-card">
+                        <article class="works-card no-cursor" data-preview="/assets/imgs/cursor-hover_img04.png">
                             <a href="https://yuorang.github.io/hyundaicard/" class="works-link"
                                 aria-label="현대카드 프로젝트 상세보기">
                                 <div class="item-inner">
@@ -230,7 +226,6 @@
                                     </div>
                                     <img src="./assets/imgs/work-arrow.svg" alt="">
                                 </div>
-                                <div class="item-cursor_img04" aria-hidden="true"></div>
                             </a>
                         </article>
 
@@ -239,6 +234,7 @@
                             <p class="brand-statement">SOLUTION FOR USERS</p>
                         </div>
                     </div>
+                    <div class="cursor-preview"></div>
                 </div>
             </div>
         </section>
@@ -426,33 +422,33 @@
 
         <div class="footer-title" role="presentation">
             <div class="marquee-wrapper">
-                <p>SHIN YU JIN</p>
+                <p>&copy; SHIN YU JIN</p>
                 <p aria-hidden="true">PORTFOLIO</p>
-                <p aria-hidden="true">SHIN YU JIN</p>
+                <p aria-hidden="true">&copy; SHIN YU JIN</p>
                 <p aria-hidden="true">PORTFOLIO</p>
-                <p aria-hidden="true">SHIN YU JIN</p>
+                <p aria-hidden="true">&copy; SHIN YU JIN</p>
                 <p aria-hidden="true">PORTFOLIO</p>
             </div>
         </div>
 
         <div class="contact-info">
             <ul class="social-list" aria-label="Contact and Social Links">
-                <li class="social-item">
+                <li class="social-item big-cursor">
                     <a href="mailto:syj20110@naver.com" class="footer-email upper" title="이메일 보내기">
                         <span>syj20110@naver.com</span>
                     </a>
                 </li>
-                <li class="social-item">
+                <li class="social-item big-cursor">
                     <a href="tel:+821057608751" class="footer-phone" title="전화 걸기">
                         <span>+82 10-5760-8751</span>
                     </a>
                 </li>
-                <li class="social-item">
+                <li class="social-item big-cursor">
                     <a href="https://github.com/yuorang" class="social-link upper" target="_blank" title="깃허브 새 창 열림">
                         github
                     </a>
                 </li>
-                <li class="social-item">
+                <li class="social-item big-cursor">
                     <a href="https://oxidized-lock-df6.notion.site/2fcd289ff59880f488eec1f29e109481?source=copy_link"
                         class="social-link upper" target="_blank" title="노션 포트폴리오 새 창 열림">
                         notion
@@ -462,7 +458,7 @@
         </div>
 
         <div class="footer-cta">
-            <div class="left">
+            <div class="left no-cursor">
                 <a href="#section04" class="direction btn-cta upper" aria-label="Selected Works 섹션으로 이동">
                     <span class="text">View works</span>
                     <span class="btn-arrow" aria-hidden="true">
@@ -481,7 +477,7 @@
                     </span>
                 </a>
             </div>
-            <div class="right">
+            <div class="right no-cursor">
                 <a href="#" class="backToTop btn-cta upper" aria-label="페이지 맨 위로 이동">
                     <span class="text">top</span>
                     <span class="btn-arrow" aria-hidden="true">

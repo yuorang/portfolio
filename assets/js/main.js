@@ -8,125 +8,55 @@ $(function () {
     gsap.ticker.lagSmoothing(0);
 
     // --- 커스텀 마우스 커서 설정 ---
-    const cursor = document.querySelector('.custom-cursor');
+    const trail = document.querySelector(".cursor-trail");
 
-    if (cursor) {
-        gsap.set(cursor, {
-            xPercent: -50,
-            yPercent: -50
-        });
 
-        let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    let mouse = { x: 0, y: 0 };
+    let pos = { x: 0, y: 0 };
 
-        // 마우스 움직임 감지
-        document.addEventListener('mousemove', (e) => {
-            // 1024px 이상일 때만 좌표 업데이트 및 로직 실행
-            if (window.innerWidth >= 1024) {
-                mouse.x = e.clientX;
-                mouse.y = e.clientY;
-                handleCursorInvert(); // 마우스 움직일 때만 반전 체크
-            }
-        });
+    document.addEventListener("mousemove", (e) => {
+        if (window.innerWidth < 1024) return;
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
 
-        // GSAP ticker: 1024px 이상일 때만 추적 동작
-        gsap.ticker.add(() => {
-            if (window.innerWidth >= 1024) {
-                gsap.to(cursor, {
-                    x: mouse.x,
-                    y: mouse.y,
-                    duration: 0.16,
-                    ease: 'power3.out',
-                    overwrite: 'auto'
-                });
-            }
-        });
+    function animate() {
+        pos.x += (mouse.x - pos.x) * 0.08;
+        pos.y += (mouse.y - pos.y) * 0.08;
 
-        // 마우스 출입 및 호버 처리 (1024px 이상 가드 추가)
-        document.addEventListener('mouseleave', () => {
-            if (window.innerWidth >= 1024) gsap.to(cursor, { autoAlpha: 0, duration: 0.2 });
-        });
-        document.addEventListener('mouseenter', () => {
-            if (window.innerWidth >= 1024) gsap.to(cursor, { autoAlpha: 1, duration: 0.2 });
-        });
+        trail.style.left = pos.x + "px";
+        trail.style.top = pos.y + "px";
 
-        document.querySelectorAll(".works-link").forEach(link => {
-            link.addEventListener("mouseenter", () => {
-                if (window.innerWidth >= 1024) gsap.to(cursor, { autoAlpha: 0, duration: 0.2 });
-            });
-            link.addEventListener("mouseleave", () => {
-                if (window.innerWidth >= 1024) gsap.to(cursor, { autoAlpha: 1, duration: 0.2 });
-            });
-        });
-
-        // 커서 색상 반전 처리 함수
-        function handleCursorInvert() {
-            // 1024px 미만(모바일/태블릿)이면 커서 강제 숨김 및 중단
-            if (window.innerWidth < 1024) {
-                gsap.set(cursor, { display: 'none', autoAlpha: 0 });
-                return;
-            } else {
-                // 1024px 이상일 때만 보이게 설정
-                gsap.set(cursor, { display: 'block' });
-            }
-
-            const scrollY = window.scrollY || window.pageYOffset;
-            const cursorY = mouse.y + scrollY;
-            const cursorX = mouse.x;
-
-            let invert = false;
-
-            // 색상반전 구간 관련 DOM
-            const header = document.getElementById('header');
-            const mainVisual = document.querySelector('.main-visual');
-            const section03 = document.getElementById('section03');
-            const section05 = document.getElementById('section05');
-            const footer = document.querySelector('footer');
-            const heroFooter = document.querySelector('.main-visual .hero-footer');
-
-            if (heroFooter && isMouseInElement(heroFooter, cursorX, mouse.y)) {
-                cursor.style.filter = '';
-                return;
-            }
-
-            const headerPos = getAbsPosAndHeight(header);
-            const mainVisualPos = getAbsPosAndHeight(mainVisual);
-            if (headerPos && mainVisualPos) {
-                if (cursorY >= headerPos.top && cursorY <= mainVisualPos.bottom) invert = true;
-            }
-
-            const section03Pos = getAbsPosAndHeight(section03);
-            if (section03Pos && cursorY >= section03Pos.top && cursorY <= section03Pos.bottom) invert = true;
-
-            const section05Pos = getAbsPosAndHeight(section05);
-            if (section05Pos) {
-                let footerEnd = footer ? getAbsPosAndHeight(footer).bottom : section05Pos.bottom;
-                if (cursorY >= section05Pos.top && cursorY <= footerEnd) invert = true;
-            }
-
-            cursor.style.filter = invert ? 'invert(1)' : '';
-        }
-
-        // 보조 함수: 절대 위치 및 높이 계산
-        function getAbsPosAndHeight(el) {
-            if (!el) return null;
-            const rect = el.getBoundingClientRect();
-            return { top: rect.top + window.scrollY, bottom: rect.bottom + window.scrollY };
-        }
-
-        // 보조 함수: 특정 요소 내 마우스 존재 여부 확인
-        function isMouseInElement(el, mouseX, mouseY) {
-            if (!el) return false;
-            const rect = el.getBoundingClientRect();
-            return (mouseX >= rect.left && mouseX <= rect.right && mouseY >= rect.top && mouseY <= rect.bottom);
-        }
-
-        window.addEventListener('scroll', handleCursorInvert);
-        window.addEventListener('resize', handleCursorInvert);
-
-        // 초기 실행
-        handleCursorInvert();
+        requestAnimationFrame(animate);
     }
 
+    animate();
+    // no-cursor
+    const hideSections = document.querySelectorAll(".no-cursor");
+
+    hideSections.forEach(section => {
+        section.addEventListener("mouseenter", () => {
+            trail.classList.add("is-hidden");
+        });
+
+        section.addEventListener("mouseleave", () => {
+            trail.classList.remove("is-hidden");
+        });
+    });
+
+
+    // big-cursor
+    const bigSections = document.querySelectorAll(".big-cursor");
+
+    bigSections.forEach(section => {
+        section.addEventListener("mouseenter", () => {
+            trail.classList.add("is-big");
+        });
+
+        section.addEventListener("mouseleave", () => {
+            trail.classList.remove("is-big");
+        });
+    });
     // --- 섹션 04 ~ 05 구간 배경색 반전 처리 ---
     ScrollTrigger.create({
         trigger: ".works",
@@ -325,37 +255,33 @@ $(function () {
     });
 
     // --- 카드 호버 시 프리뷰 이미지 마우스 추적 ---
-    document.querySelectorAll('.works .right .works-card').forEach((card) => {
-        const img = card.querySelector('.item-cursor_img01, .item-cursor_img02, .item-cursor_img03, .item-cursor_img04');
-        if (!img) return;
+    const preview = document.querySelector('.cursor-preview');
 
-        gsap.set(img, { opacity: 0, x: 0, y: 0 });
+    document.querySelectorAll('.works-card').forEach(card => {
 
-        function moveImg(e) {
-            const mouseX = e.offsetX;
-            const mouseY = e.offsetY;
+        card.addEventListener('mouseenter', () => {
 
-            gsap.to(img, {
-                x: mouseX,
-                y: mouseY,
-                duration: 0.21,
-                ease: "power2.out",
-                overwrite: "auto"
-            });
-        }
+            const imgPath = card.dataset.preview;
+            preview.style.backgroundImage = `url(${imgPath})`;
 
-        card.addEventListener("mouseenter", (e) => {
-            gsap.to(img, { opacity: 1, duration: 0.18, overwrite: 'auto', pointerEvents: 'none' });
-            moveImg(e);
-            window.addEventListener("mousemove", moveImg);
+            gsap.to(preview, { opacity: 1, duration: 0.2 });
         });
 
-        card.addEventListener("mouseleave", (e) => {
-            gsap.to(img, { opacity: 0, duration: 0.18, overwrite: 'auto' });
-            window.removeEventListener("mousemove", moveImg);
+        card.addEventListener('mousemove', (e) => {
+
+            gsap.to(preview, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.2,
+                ease: "power2.out"
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+
+            gsap.to(preview, { opacity: 0, duration: 0.2 });
         });
     });
-
     // --- 브랜드 스테이트먼트: 글자별 블러 등장 효과 ---
     document.querySelectorAll('.brand-statement').forEach(statement => {
         const text = statement.textContent;
@@ -507,63 +433,6 @@ $(function () {
             $item.toggleClass('is-open');
         });
     });
-
-
-    // --- 푸터 스포트라이트 효과 (Desktop 전용) ---
-    (function () {
-        const footerTitle = document.querySelector('.footer-title p');
-        const footerContainer = document.querySelector('.footer-title');
-        if (!footerTitle) return;
-
-        let fillOverlay = null;
-
-        function initSpotlight() {
-            if (fillOverlay || window.innerWidth < 1024) return;
-
-            footerContainer.style.position = 'relative';
-            footerTitle.style.webkitTextFillColor = 'transparent';
-            footerTitle.style.webkitTextStroke = '1px #fff';
-
-            fillOverlay = document.createElement('span');
-            fillOverlay.innerText = footerTitle.innerText;
-            fillOverlay.className = 'footer-title-fill-overlay';
-
-            Object.assign(fillOverlay.style, {
-                position: 'absolute', left: '0', top: '0', width: '100%', height: '100%',
-                color: '#b3ec11', font: 'inherit', display: 'block', pointerEvents: 'none',
-                zIndex: '2', WebkitTextFillColor: '#fff', WebkitTextStroke: '0px',
-                textAlign: 'inherit', whiteSpace: 'pre', opacity: '0',
-                transition: 'opacity 0.2s ease'
-            });
-
-            footerTitle.appendChild(fillOverlay);
-
-            footerTitle.addEventListener('mouseenter', showSpotlight);
-            footerTitle.addEventListener('mousemove', updateSpotlight);
-            footerTitle.addEventListener('mouseleave', hideSpotlight);
-        }
-
-        let isMouseInside = false;
-        function moveSpotlight(e) {
-            if (window.innerWidth < 1024 || !fillOverlay) return;
-            const rect = footerTitle.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const maskVal = `radial-gradient(circle at ${x}px ${y}px, #fff 80px, transparent 160px)`;
-            fillOverlay.style.maskImage = maskVal;
-            fillOverlay.style.WebkitMaskImage = maskVal;
-        }
-
-        function showSpotlight(e) { isMouseInside = true; moveSpotlight(e); if (fillOverlay) fillOverlay.style.opacity = '1'; }
-        function updateSpotlight(e) { if (isMouseInside) requestAnimationFrame(() => moveSpotlight(e)); }
-        function hideSpotlight() { isMouseInside = false; if (fillOverlay) fillOverlay.style.opacity = '0'; }
-
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 1024) initSpotlight();
-        });
-
-        initSpotlight();
-    })();
 
     // --- 상단 이동 버튼 (Back to Top) ---
     const backToTopBtn = document.querySelector('.backToTop');
