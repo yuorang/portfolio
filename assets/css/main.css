@@ -1,0 +1,811 @@
+    /* landing-intro */
+    .landing-intro {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        color: #fff;
+        pointer-events: none;
+    }
+
+    /* 인트로 배경 슬라이드 레이어 */
+    .slide-bg01,
+    .slide-bg02 {
+        position: absolute;
+        inset: 0;
+        height: 100vh;
+    }
+
+    .landing-intro .slide-bg01 {
+        z-index: 2;
+        background-color: #0e0e0e;
+    }
+
+    .landing-intro .slide-bg02 {
+        z-index: 1;
+        background-color: #eaa4b0;
+    }
+
+    /* 인트로 중앙 타이틀 설정 */
+    .intro-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 3;
+        display: flex;
+        gap: 20px;
+        transform: translate(-50%, -50%);
+    }
+
+    .intro-title .text {
+        font-size: clamp(20px, 4vw, 30px);
+        font-weight: 600;
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateX(80px);
+        will-change: transform, opacity;
+    }
+
+    .main-visual {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .visual_vedio {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+
+        position: fixed;
+        z-index: 1;
+        will-change: clip-path;
+    }
+
+    .row {
+        padding: 0 50px;
+        position: fixed;
+        bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 5vw;
+        mix-blend-mode: difference;
+        pointer-events: none;
+        color: #ffffff;
+        mix-blend-mode: difference;
+        z-index: 10;
+    }
+
+    .motionText {
+        display: inline-block;
+        clip-path: inset(0 0 0 0);
+        transition: clip-path 0.3s ease-in;
+    }
+
+    .motionText.hide {
+        clip-path: inset(0 100% 0 0);
+    }
+
+
+    /* section03*/
+    #section03 {
+        position: relative;
+        z-index: 5;
+
+        display: flex;
+        align-items: center;
+        gap: 150px;
+        width: 100%;
+        padding: clamp(60px, 10vw, 200px) clamp(24px, 8vw, 200px);
+    }
+
+    #section03 .title {
+        font-size: clamp(3rem, 4vw, 4.3rem);
+        white-space: nowrap;
+    }
+
+    #section03 .desc {
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+        font-weight: 300;
+        line-height: 1.5;
+    }
+
+    #section03 .desc:last-child {
+        margin-top: 20px;
+    }
+
+    /* section04 */
+    .works-thumb {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        overflow: hidden;
+        font-size: 14vw;
+        font-weight: 500;
+        line-height: 105%;
+        letter-spacing: -10px;
+        margin-top: 100px;
+        padding-bottom: 80px;
+    }
+
+    .viewTitle-up {
+        transform: translateX(-120%);
+        transition: transform 0.8s cubic-bezier(.19, 1, .22, 1);
+    }
+
+    .viewTitle-down {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transform: translateX(120%);
+        transition: transform 0.8s cubic-bezier(.19, 1, .22, 1);
+    }
+
+    /* work list*/
+    .works {
+        position: relative;
+        margin-top: 150px;
+        padding: 100px 0 180px;
+        border-top: .5px solid #6c6c6c;
+    }
+
+    .flex-area {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    /* Sticky Info */
+    .works .left {
+        position: sticky;
+        top: 80px;
+        width: 35%;
+        padding-left: 40px;
+    }
+
+    .works .left .works-link {
+        position: relative;
+        margin-top: 10px;
+        overflow: hidden;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .works .left .works-link .crbold {
+        font-size: 14px;
+        font-weight: 700;
+        transition: color 0.3s ease;
+    }
+
+    .works .left .works-link:hover .crbold {
+        color: #eaa4b0;
+    }
+
+    /* 우측 콘텐츠 리스트 영역 */
+    .works .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        width: auto;
+        padding-left: 50px;
+        overflow: hidden;
+        z-index: 20;
+    }
+
+    /* 개별 프로젝트 카드 설정 */
+    .works .right .works-card {
+        counter-increment: item-counter;
+        padding-left: 40px;
+        transform: translateX(50%);
+        transition: transform 0.8s cubic-bezier(.19, 1, .22, 1);
+        z-index: 10;
+    }
+
+    /* 카드 하단 라인 및 언더라인 애니메이션 */
+    .works .right .works-link {
+        position: relative;
+        padding-bottom: 20px;
+        padding-right: 40px;
+        border-bottom: .5px solid #6c6c6c;
+    }
+
+    /* 호버 시 왼쪽에서 오른쪽으로 길어지는 검은색 강조 선 */
+    .works .right .works-link::after {
+        content: "";
+        position: absolute;
+        bottom: -0.5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+    }
+
+    .works .right .works-link:hover::after {
+        transform: scaleX(1);
+    }
+
+    /* 번호 표시 및 내부 레이아웃 */
+    .works .right .item-inner {
+        position: relative;
+        display: flex;
+        gap: 20px;
+    }
+
+    /* 프로젝트 번호 (ex. .01) */
+    .item-inner::before {
+        content: "." counter(item-counter, decimal-leading-zero);
+        position: absolute;
+        top: 0;
+        left: -50px;
+        font-size: 12px;
+        color: #101012;
+        line-height: 180%;
+    }
+
+    /* 텍스트 정보 (제목 & 메타 데이터) */
+    .works .right .works-text {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .works .right .work-title {
+        font-size: clamp(40px, 3vw, 64px);
+        font-weight: 500;
+    }
+
+    .works .right .work-meta {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        opacity: 0.8;
+    }
+
+    .works .right .work-meta .bl {
+        font-weight: 800;
+    }
+
+    /* 우측 화살표 아이콘 인터랙션 */
+    .works .right img {
+        align-self: center;
+        width: auto;
+        height: 27px;
+        margin-left: auto;
+        padding-right: 40px;
+        transform-origin: center center;
+        transform-box: fill-box;
+        transition: transform .4s cubic-bezier(.19, 1, .22, 1);
+    }
+
+    /* 호버 시 화살표가 대각선 위(-45도)로 회전 */
+    .works .right .works-link:hover img {
+        transform: rotate(-45deg);
+    }
+
+    /* 마우스를 따라다니는 호버 프리뷰 이미지 */
+    .cursor-preview {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 500px;
+        height: 300px;
+
+        border-radius: 8px;
+        background-size: cover;
+        background-position: center;
+
+        pointer-events: none;
+        z-index: 9999;
+
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 10px 10px 0 rgba(31, 31, 32, 0.35), 0 2px 8px 0 rgba(62, 62, 62, 0.08);
+    }
+
+    .marquee {
+        overflow: hidden;
+        width: 100%;
+        margin-top: 200px;
+        opacity: 0.6;
+    }
+
+    .marquee-track {
+        display: flex;
+        gap: 30px;
+        width: max-content;
+        animation: marquee 30s linear infinite;
+    }
+
+    .wrap {
+        display: flex;
+        gap: 80px;
+        padding-right: 40px;
+    }
+
+    .wrap span {
+        display: flex;
+        gap: 10px;
+        white-space: nowrap;
+        font-size: 20px;
+    }
+
+    .wrap span img {
+        width: 24px;
+        transform: rotate(40deg);
+    }
+
+    @keyframes marquee {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* section05 */
+    /* 섹션 05 전체 레이아웃 */
+    #section05 {
+        display: flex;
+        align-items: flex-start;
+        padding: 180px 0;
+        color: #fff;
+    }
+
+    /* 왼쪽 사이드 (스크롤 시 고정되는 정보 영역) */
+    #section05 .left {
+        position: sticky;
+        top: 80px;
+        width: 35%;
+        padding-left: 40px;
+    }
+
+    #section05 .left .service-desc {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    #section05 .left .service-category {
+        font-size: 16px;
+        font-weight: 400;
+        opacity: 0.3;
+    }
+
+    /* 오른쪽 사이드 (콘텐츠 및 아코디언 리스트) */
+    #section05 .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        overflow: hidden;
+    }
+
+    #section05 .right .service-title {
+        font-size: 8vw;
+    }
+
+    #section05 .right .service-sub {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.6rem;
+    }
+
+    /* 아코디언 리스트 컨테이너 */
+    #section05 .right .arcodien-list {
+        margin-top: 80px;
+    }
+
+    /* 아코디언 개별 아이템 */
+    #section05 .right .accordion-item {
+        counter-increment: item-counter;
+        position: relative;
+        padding: 40px 40px 40px 0;
+        border-bottom: 1px solid #3a3a3a;
+        cursor: pointer;
+    }
+
+    /* 아코디언 하단 포인트 라인 애니메이션 */
+    #section05 .right .accordion-item::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: #eaa4b0;
+        transition: all .8s cubic-bezier(.19, 1, .22, 1);
+    }
+
+    /* 호버 또는 활성화 시 라인 확장 */
+    #section05 .right .accordion-item:hover::after,
+    #section05 .right .accordion-item:active::after {
+        width: 100%;
+    }
+
+    /* 아코디언 텍스트 기본 상태 (오른쪽에서 숨겨져 있음) */
+    #section05 .right .accordion-text {
+        position: relative;
+        padding-left: 60px;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: transform 0.6s cubic-bezier(.19, 1, .22, 1),
+            opacity 0.4s ease;
+    }
+
+    /* 아코디언 상단 영역 (제목 및 아이콘) */
+    #section05 .right .accordion-text .top {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* 아코디언 자동 번호 표시 (ex. .01) */
+    #section05 .right .top::before {
+        content: "." counter(item-counter, decimal-leading-zero);
+        position: absolute;
+        top: 12px;
+        left: -50px;
+        color: #eaa4b0;
+        font-size: 12px;
+        line-height: 180%;
+    }
+
+    #section05 .right .accordion-title {
+        font-size: clamp(40px, 3vw, 64px);
+        font-weight: 500;
+    }
+
+    /* 아코디언 우측 아이콘 (+ 모양) */
+    #section05 .right .top .fa-thin {
+        display: inline-block;
+        font-size: 48px;
+        transform: rotate(0deg);
+        transition: all .8s cubic-bezier(.19, 1, .22, 1);
+    }
+
+    /* 아코디언이 열렸을 때 아이콘 회전 (X 모양) */
+    #section05 .right .accordion-item.is-open .fa-thin {
+        transform: rotate(45deg);
+        transition: transform 0.6s ease;
+    }
+
+    /* 숨겨진 상세 내용 (열릴 때 나타남) */
+    #section05 .right .hidden {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        max-height: 0;
+        margin-top: 10px;
+        opacity: 0;
+        overflow: hidden;
+        transition: all .3s ease-in;
+    }
+
+    /* 아코디언 열림 상태일 때 상세 내용 노출 */
+    #section05 .right .accordion-item.is-open .hidden {
+        max-height: 500px;
+        margin-top: 16px;
+        opacity: 1;
+        transition: all .3s ease-in-out;
+    }
+
+    /* 상세 내용 내 소제목 및 설명 */
+    #section05 .right .accordion-sub {
+        margin-bottom: 10px;
+        color: #eaa4b0;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    #section05 .right .accordion-desc {
+        width: 100%;
+        max-width: 620px;
+        margin-bottom: 30px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.4;
+    }
+
+    /* 하단 태그 그룹 */
+    #section05 .right .label-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    /* 개별 라벨 태그 스타일 */
+    #section05 .right .label {
+        padding: 6px 14px;
+        border: 1px solid #939393;
+        border-radius: 50px;
+        color: #939393;
+        font-size: 12px;
+    }
+
+    @media (max-width: 1024px) {
+        .main-visual {
+            height: 100vh;
+        }
+
+        /* section03 */
+        #section03 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            /* 가로에서 세로 정렬로 변경 */
+            gap: 30px;
+            width: 100%;
+            padding: 100px 16px;
+        }
+
+        #section03 .title,
+        #section03 .desc {
+            flex: none;
+        }
+
+        #section03 .desc {
+            font-size: 1rem;
+        }
+
+        /* section04 */
+
+        .works {
+            padding: 100px 0;
+            margin-top: 0;
+        }
+
+        .works-thumb {
+            font-size: 18vw;
+        }
+
+        .flex-area {
+            display: block;
+            /* 가로(Flex) 배열 해제 -> 세로로 쌓임 */
+        }
+
+        .works .left {
+            position: static;
+            /* 스크롤 고정(Sticky) 해제 */
+            width: 100%;
+            margin-bottom: 100px;
+            padding-left: 20px;
+        }
+
+        .works .left .works-link {
+            font-size: 14px;
+        }
+
+        .works .right {
+            padding-left: 20px;
+        }
+
+        .works .right img {
+            height: 20px;
+            padding-right: 20px;
+        }
+
+        .works .bottom {
+            margin: 80px auto;
+        }
+
+        /* 마우스 호버 이미지 커서 (터치 기기 환경이므로 비활성화) */
+        .item-cursor_img,
+        .item-cursor_img01,
+        .item-cursor_img02,
+        .item-cursor_img03,
+        .item-cursor_img04 {
+            display: none !important;
+        }
+
+        /* section05 */
+        #section05 {
+            display: block;
+            /* 가로(Flex) 레이아웃 해제 */
+            padding: 100px 0;
+        }
+
+        #section05 .left {
+            position: static;
+            /* 스크롤 고정(Sticky) 해제 */
+            width: 100%;
+            margin-bottom: 80px;
+            padding-left: 20px;
+        }
+
+        #section05 .left .service-category {
+            font-size: 14px;
+        }
+
+        #section05 .right {
+            padding-left: 20px;
+        }
+
+        #section05 .right .arcodien-list {
+            margin-top: 30px;
+        }
+
+        #section05 .right .top .fa-thin {
+            font-size: 36px;
+            /* 아이콘 크기 축소 */
+        }
+
+        #section05 .right .accordion-desc {
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        /* intro */
+        .intro-title {
+            flex-direction: column;
+            /* 가로 배열을 세로로 변경 */
+            align-items: center;
+            gap: 10px;
+        }
+
+        .landing-intro .slide-bg02 {
+            z-index: 1;
+            background-color: #eaa4b0;
+        }
+
+        /* main visual */
+        .row {
+            padding: 0 20px;
+            font-size: 8vw;
+        }
+
+        /* section03 */
+        #section03 {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            padding: 100px 16px 0;
+        }
+
+        #section03 .title {
+            width: 100%;
+            font-size: 30px;
+        }
+
+        #section03 .desc {
+            width: 100%;
+            font-size: .9rem;
+            font-weight: 400;
+        }
+
+        /* section04 */
+        .works-thumb {
+            letter-spacing: -6px;
+        }
+
+        .works {
+            margin-top: 0;
+            padding: 30px 0 0;
+            border-top: .5px solid #6c6c6c;
+        }
+
+        .works .left {
+            position: static;
+            /* 고정 해제 */
+            margin-bottom: 50px;
+            padding-left: 16px;
+        }
+
+        .works .left .works-link {
+            margin-top: 6px;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .works .left .works-link .crbold {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .works .right {
+            gap: 20px;
+            padding-left: 16px;
+        }
+
+        .works .right .works-link {
+            padding-right: 0;
+            padding-bottom: 10px;
+        }
+
+        .works .right .works-index {
+            font-size: 10px;
+        }
+
+        .works .right .work-title {
+            font-size: 24px;
+        }
+
+        .works .right .work-meta {
+            margin-bottom: 8px;
+            font-size: 10px;
+            opacity: 0.6;
+        }
+
+        .marquee {
+            margin-top: 50px;
+        }
+
+        /* section05 */
+        #section05 {
+            padding: 50px 0;
+        }
+
+        #section05 .left {
+            margin-bottom: 50px;
+            padding-left: 16px;
+        }
+
+        #section05 .right {
+            gap: 20px;
+            padding-left: 16px;
+        }
+
+        #section05 .right .service-title {
+            font-size: 30px;
+        }
+
+        #section05 .right .service-sub {
+            font-size: 14px;
+        }
+
+        /* 아코디언 모바일 커스텀 */
+        #section05 .right .arcodien-list {
+            margin-top: 20px;
+        }
+
+        #section05 .right .accordion-item {
+            padding: 20px 20px 20px 0;
+        }
+
+        #section05 .right .accordion-text {
+            padding-left: 50px;
+        }
+
+        #section05 .right .accordion-title {
+            font-size: 24px;
+        }
+
+        #section05 .right .top .fa-thin {
+            font-size: 24px;
+        }
+
+        #section05 .right .accordion-sub {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        #section05 .right .accordion-desc {
+            font-size: 12px;
+        }
+
+        /* 라벨 태그 모바일 최적화 (줄바꿈 허용) */
+        #section05 .right .label-group {
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        #section05 .right .label {
+            font-size: 10px;
+            font-weight: 400;
+        }
+    }

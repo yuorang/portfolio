@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yujin</title>
+    <!-- 파비콘 -->
+    <link rel="icon" href="./assets/imgs/favicon32x32.png" type="image/x-icon" sizes="32x32">
+    <link rel="icon" href="./assets/imgs/favicon16x16.png" type="image/png" sizes="16x16">
+    <!-- font-awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- css link -->
+    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <!-- jQurey CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- js link -->
+    <script src="./assets/js/main.js"></script>
+    <!-- gsap -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <!-- lenis -->
+    <script src="https://unpkg.com/lenis@1.3.15/dist/lenis.min.js"></script>
+    <!-- font -->
+    <link href="https://db.onlinewebfonts.com/c/03bd7255184e8e8ad4d2a521fa920b6c?family=PolySans+Neutral"
+        rel="stylesheet" type="text/css" />
+    <link href="https://db.onlinewebfonts.com/c/e11df7e4dd48a1610e5daa2afb643b75?family=PolySans+Neutral+Wide"
+        rel="stylesheet" type="text/css" />
+    <link href="https://db.onlinewebfonts.com/c/d8a4964eec2c4a693d6722609068043c?family=PolySans+Slim" rel="stylesheet"
+        type="text/css" />
+</head>
+
+<body>
+    <!-- 커서 -->
+    <div class="cursor-trail"></div>
+    <!-- 랜딩페이지 -->
+    <div class="landing-intro">
+        <div class="slide-bg02"></div>
+        <div class="slide-bg01">
+            <div class="cont-wrap">
+                <h1 class="intro-title polyw">
+                    <span class="text">Standards-Based</span>
+                    <span class="text">Web Publisher</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <!-- header -->
+    <header id="header">
+        <h1 class="logo poly">
+            <a href="#">
+                Better Web Interface
+                <br>
+                Markup. Accessible. Usable.
+            </a>
+        </h1>
+        <nav class="menu polyw">
+            <ul class="menu-list">
+                <li class="menu-item big-cursor"><a href="#section03" class="menu-link upper">about</a></li>
+                <li class="menu-item big-cursor"><a href="#section04" class="menu-link upper">works</a></li>
+                <li class="menu-item big-cursor"><a href="#section05" class="menu-link upper">My Approach</a></li>
+                <li class="menu-item big-cursor"><a href="#footer" class="menu-link upper">contact</a></li>
+            </ul>
+            <!-- 모바일 햄버거 메뉴 -->
+            <button class="hamburger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-menu">
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+    <!-- 모바일 햄버거 오픈-->
+    <div id="main-menu" class="nav-mobile-overlay" role="dialog" aria-modal="true" aria-label="모바일 메뉴">
+        <nav>
+            <ul class="nav-mobile">
+                <li class="mo-menu-item">
+                    <a href="#section03" class="mo-menu-link upper">about</a>
+                </li>
+                <li class="mo-menu-item">
+                    <a href="#section04" class="mo-menu-link upper">works</a>
+                </li>
+                <li class="mo-menu-item">
+                    <a href="#section05" class="mo-menu-link upper">My Approach</a>
+                </li>
+                <li class="mo-menu-item">
+                    <a href="#footer" class="mo-menu-link upper">contact</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <main id="main">
+        <section class="main-visual poly">
+            <h2 class="blind">메인</h2>
+            <video autoplay loop muted playsinline preload="metadata" class="visual_vedio">
+                <source src="./assets/imgs/visual.mp4" type="video/mp4">
+            </video>
+            <div class="row">
+                <div class="item">
+                    <span class="firstText">L</span><span class="motionText">ogic</span>
+                </div>
+                <div class="item">
+                    <span class="firstText">M</span><span class="motionText">otion</span>
+                </div>
+                <div class="item">
+                    <span class="firstText">S</span><span class="motionText">olution</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="section03" aria-labelledby="about-title">
+            <h2 id="about-title" class="title polys">
+                User-Centered <br>
+                Web Publisher
+            </h2>
+            <div class="desc-wrap">
+                <p class="desc">
+                    사용자의 흐름과 경험을 고려해 UI를 구현하는 과정에서 재미를 느끼는 웹 퍼블리셔입니다.
+                    웹 표준과 접근성을 기반으로 안정적이고 일관된 마크업 구조를 구축하며, 디자인의 의도를 정확히 이해해 서비스 흐름에 맞는 인터랙션을 구현합니다.
+                </p>
+                <p class="desc">
+                    단순한 화면 구현을 넘어 사용자가 자연스럽게 서비스를 탐색하고 이용할 수 있는 경험을 만드는 데 집중합니다. 또한 유지보수와 확장성을 고려한 구조를 고민하며, 오래도록 안정적으로
+                    운영될 수 있는 웹을 구현하는 것을 목표로 합니다.
+                </p>
+            </div>
+        </section>
+
+        <section id="section04" aria-labelledby="works-title">
+            <h2 id="works-title" class="blind">SELECTED WORKS</h2>
+
+            <div class="works-thumb" aria-hidden="true">
+                <h3 class="viewTitle-up polyw">FEATURED</h3>
+                <div class="viewTitle-down">
+                    <span class="polyw">PROJECTS</span>
+                </div>
+            </div>
+
+            <div class="works polys">
+                <div class="flex-area">
+                    <nav class="left" aria-label="Project Code Reviews">
+                        <a href="https://oxidized-lock-df6.notion.site/NAVER-2fcd289ff5988040921bf15aa99d0553?source=copy_link"
+                            class="works-link big-cursor" target="_blank" title="새 창 열림">
+                            <span class="crbold">NAVER</span> CODE REVIEW
+                        </a>
+                        <a href="https://oxidized-lock-df6.notion.site/Postevand-2fcd289ff598809aa118c2015b80c1f2?source=copy_link"
+                            class="works-link big-cursor" target="_blank" title="새 창 열림">
+                            <span class="crbold">POSTEVAND</span> CODE REVIEW
+                        </a>
+                        <a href="https://oxidized-lock-df6.notion.site/2fcd289ff598805f9735d52ccf4c951a?source=copy_link"
+                            class="works-link big-cursor" target="_blank" title="새 창 열림">
+                            <span class="crbold">엔터프라이즈블록체인</span> CODE REVIEW
+                        </a>
+                        <a href="https://oxidized-lock-df6.notion.site/2fcd289ff59880b9bb30dbdf75fed1c2?source=copy_link"
+                            class="works-link big-cursor" target="_blank" title="새 창 열림">
+                            <span class="crbold">HYUNDACARD</span> CODE REVIEW
+                        </a>
+                    </nav>
+
+                    <div class="right poly">
+                        <article class="works-card no-cursor" data-preview="assets/imgs/cursor-hover_img01.png">
+                            <a href="https://yuorang.github.io/naver/" class="works-link"
+                                aria-label="네이버 PC 클론코딩 프로젝트 상세보기">
+                                <div class="item-inner">
+                                    <div class="works-text">
+                                        <p class="work-title upper">naver</p>
+                                        <p class="work-meta upper"><span class="bl">PC Web</span> #clone coding
+                                            #퍼블리싱100%
+                                            #HTML5 #CSS3</p>
+                                    </div>
+                                    <img src="./assets/imgs/work-arrow.svg" alt="">
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="works-card no-cursor" data-preview="assets/imgs/cursor-hover_img02.png">
+                            <a href="https://yuorang.github.io/postevand/" class="works-link"
+                                aria-label="Postevand 반응형 웹 프로젝트 상세보기">
+                                <div class="item-inner">
+                                    <div class="works-text">
+                                        <p class="work-title">Postevand</p>
+                                        <p class="work-meta upper"><span class="bl">#반응형 인터랙티브 PC Web</span> #퍼블리싱100%
+                                            #HTML5 #CSS3
+                                            #GSAP #JavaScript</p>
+                                    </div>
+                                    <img src="./assets/imgs/work-arrow.svg" alt="">
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="works-card no-cursor" data-preview="assets/imgs/cursor-hover_img03.png">
+                            <a href="https://yuorang.github.io/enterprizeblockchain/" class="works-link"
+                                aria-label="엔터프라이즈블록체인 프로젝트 상세보기">
+                                <div class="item-inner">
+                                    <div class="works-text">
+                                        <p class="work-title upper">엔터프라이즈블록체인</p>
+                                        <p class="work-meta upper"><span class="bl">인터랙티브 PC Web</span> #퍼블리싱100% #HTML5
+                                            #CSS3 #GSAP
+                                            #JavaScript</p>
+                                    </div>
+                                    <img src="./assets/imgs/work-arrow.svg" alt="">
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="works-card no-cursor" data-preview="assets/imgs/cursor-hover_img04.png">
+                            <a href="https://yuorang.github.io/hyundaicard/" class="works-link"
+                                aria-label="현대카드 프로젝트 상세보기">
+                                <div class="item-inner">
+                                    <div class="works-text">
+                                        <p class="work-title">HyundaiCard</p>
+                                        <p class="work-meta upper"><span class="bl">인터랙티브 PC Web</span> #퍼블리싱 100%
+                                            #HTML5 #CSS3 #GSAP
+                                            #JavaScript</p>
+                                    </div>
+                                    <img src="./assets/imgs/work-arrow.svg" alt="">
+                                </div>
+                            </a>
+                        </article>
+
+                    </div>
+                    <div class="cursor-preview"></div>
+                </div>
+                <div class="marquee">
+                    <div class="marquee-track polyw">
+                        <div class="wrap">
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">HTML5 </span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">CSS3</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">GSAP</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">JavaScript</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">jQuery</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">Responsive
+                                Web</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">GitHub</span>
+                        </div>
+
+                        <div class="wrap">
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">HTML5</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">CSS3</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">GSAP</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">JavaScript</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">jQuery</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">Responsive
+                                Web</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">GitHub</span>
+                        </div>
+
+                        <div class="wrap">
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">HTML5</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">CSS3</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">GSAP</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">JavaScript</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">jQuery</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">Responsive
+                                Web</span>
+                            <span><img class="arrow-icon" src="./assets/imgs/work-arrow.svg" alt="">GitHub</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="section05" aria-labelledby="approach-title">
+            <h2 id="approach-title" class="blind">My Approach</h2>
+
+            <div class="left" aria-hidden="true">
+                <div class="service-desc poly">
+                    <p class="service-category">My Markup Principles</p>
+                    <p class="service-category">Accessibility Checklist</p>
+                    <p class="service-category">How I Study</p>
+                    <p class="service-category">Problem → Solution</p>
+                </div>
+            </div>
+
+            <div class="right">
+                <p class="service-title polyw">
+                    My Approach
+                </p>
+
+                <ul class="arcodien-list">
+                    <li class="accordion-item">
+                        <div class="accordion-text">
+                            <button type="button" class="top" aria-expanded="false" aria-controls="content-01"
+                                id="accordion-header-01">
+                                <span class="accordion-title polys">My Markup Principles</span>
+                                <i class="fa-sharp fa-thin fa-plus" aria-hidden="true"></i>
+                            </button>
+
+                            <div id="content-01" class="hidden" role="region" aria-labelledby="accordion-header-01">
+                                <h3 class="accordion-sub">(마크업을 대하는 기준)</h3>
+                                <p class="accordion-desc">
+                                    저는 보이는 화면을 구현하는 것보다,
+                                    문서의 구조와 흐름을 먼저 설계하는 마크업을 중요하게 생각합니다.
+                                </p>
+                                <div class="accordion-desc">
+                                    콘텐츠의 역할에 맞는 시맨틱 태그를 사용해
+                                    문서 구조만 보아도 페이지의 의도와 정보 위계가 자연스럽게 이해되도록 작성합니다.
+                                    이를 통해 접근성과 검색 엔진 친화적인 구조를 함께 고려합니다.
+                                </div>
+                                <div class="accordion-desc">
+                                    또한 스타일링을 위한 마크업이 아닌,
+                                    유지보수와 협업을 전제로 한 구조 설계를 목표로 합니다.
+                                    클래스 네이밍은 역할과 맥락이 드러나도록 명확하게 정의하고,
+                                    페이지 전반에서 일관된 규칙을 유지해 수정과 확장이 쉬운 구조를 지향합니다.
+                                </div>
+                                <div class="accordion-desc">
+                                    작은 요소 하나라도 “왜 이 태그여야 하는지”,
+                                    “이 구조가 나중에도 이해되기 쉬운지”를 고민하며 마크업합니다.
+                                </div>
+                                <ul class="label-group" aria-label="Markup Keywords">
+                                    <li class="label">Semantic Markup</li>
+                                    <li class="label">Structure First</li>
+                                    <li class="label">Maintainable Code</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="accordion-item">
+                        <div class="accordion-text">
+                            <button type="button" class="top" aria-expanded="false" aria-controls="content-02"
+                                id="accordion-header-02">
+                                <span class="accordion-title polys">Accessibility Checklist</span>
+                                <i class="fa-sharp fa-thin fa-plus" aria-hidden="true"></i>
+                            </button>
+
+                            <div id="content-02" class="hidden" role="region" aria-labelledby="accordion-header-02">
+                                <h3 class="accordion-sub">(접근성을 위한 기본 점검 항목)</h3>
+                                <p class="accordion-desc">
+                                    모든 사용자가 화면을 이해하고 사용할 수 있어야 한다는 관점에서,
+                                    웹 접근성의 기본 개념들을 의식하며 마크업을 작성하고 있습니다.
+                                </p>
+                                <div class="accordion-desc">
+                                    시맨틱 태그의 역할을 이해하고,
+                                    콘텐츠 구조가 명확하게 전달되도록 태그 선택에 신경 쓰고 있으며
+                                    이미지에는 상황에 맞는 대체 텍스트가 필요하다는 점을 인지하고 있습니다.
+                                </div>
+                                <div class="accordion-desc">
+                                    또한 키보드 접근성, 색 대비, 인터랙션 요소의 인식 가능성 등
+                                    접근성을 구성하는 요소들이 무엇인지 인지하고 있으며,
+                                    현재는 마크업과 스타일 작성 과정에서
+                                    문제가 될 수 있는 부분을 만들지 않으려는 방향으로 코드를 작성하려고 노력하고 있습니다.
+                                </div>
+                                <div class="accordion-desc">
+                                    아직 실무 수준의 점검 경험은 부족하지만,
+                                    기본 원칙을 이해하고 적용하려는 태도를 바탕으로
+                                    접근성을 고려한 화면 구현에 점차 익숙해지고자 합니다.
+                                </div>
+                                <ul class="label-group" aria-label="Accessibility Keywords">
+                                    <li class="label">Accessibility</li>
+                                    <li class="label">Keyboard Focus</li>
+                                    <li class="label">Color Contrast</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="accordion-item">
+                        <div class="accordion-text">
+                            <button type="button" class="top" aria-expanded="false" aria-controls="content-03"
+                                id="accordion-header-03">
+                                <span class="accordion-title polys">How I Study</span>
+                                <i class="fa-sharp fa-thin fa-plus" aria-hidden="true"></i>
+                            </button>
+
+                            <div id="content-03" class="hidden" role="region" aria-labelledby="accordion-header-03">
+                                <h3 class="accordion-sub">(공부 방식)</h3>
+                                <p class="accordion-desc">
+                                    저는 개념을 이해하지 않고 따라 치는 방식보다는,
+                                    왜 이렇게 동작하는지 납득하면서 배우는 공부가 중요하다고 생각합니다.
+                                </p>
+                                <div class="accordion-desc">
+                                    공식 문서와 레퍼런스를 기준으로 개념을 먼저 정리한 뒤,
+                                    직접 화면을 만들면서 코드를 수정해 보고 결과를 확인하는 방식으로 학습하고 있습니다.
+                                    예제를 그대로 따라 하기보다는 구조를 바꿔보거나 수치를 조정해 보며
+                                    레이아웃과 스타일이 어떻게 달라지는지 직접 확인하려고 합니다.
+                                </div>
+                                <div class="accordion-desc">
+                                    반응형 작업을 할 때는 로컬 IP 주소를 활용해
+                                    PC뿐 아니라 휴대폰과 아이패드에서도 화면을 열어보며 작업합니다.
+                                    완전한 크로스브라우징 수준은 아니지만,
+                                    기기마다 화면이 어떻게 보이는지를 확인하는 과정 자체가 중요하다고 생각해
+                                    가능한 범위 내에서 점검하며 작업하고 있습니다.
+                                </div>
+                                <ul class="label-group" aria-label="Study Keywords">
+                                    <li class="label">Practice-Based Learning</li>
+                                    <li class="label">Structure-Oriented Study</li>
+                                    <li class="label">Hands-on Practice</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="accordion-item">
+                        <div class="accordion-text">
+                            <button type="button" class="top" aria-expanded="false" aria-controls="content-04"
+                                id="accordion-header-04">
+                                <span class="accordion-title polys">Problem → Solution</span>
+                                <i class="fa-sharp fa-thin fa-plus" aria-hidden="true"></i>
+                            </button>
+
+                            <div id="content-04" class="hidden" role="region" aria-labelledby="accordion-header-04">
+                                <h3 class="accordion-sub">(문제를 해결하는 방식)</h3>
+                                <div class="accordion-desc">
+                                    구현 과정에서 문제가 발생하면,
+                                    원인을 한 번에 찾기보다 구조(마크업), 스타일(CSS), 인터랙션 흐름 단위로 나누어 생각합니다.
+                                    어느 단계에서 문제가 생겼는지 범위를 좁힌 뒤,
+                                    작은 단위부터 하나씩 확인하며 해결하려고 합니다.
+                                </div>
+                                <div class="accordion-desc">
+                                    이 과정에서 AI 도구를 참고 자료로 활용하기도 하지만,
+                                    제안된 답을 그대로 적용하기보다는
+                                    공식 문서나 기존 코드와 교차로 확인하며 테스트하는 방식을 지향합니다.
+                                    동작은 하지만 이해되지 않는 코드는 남기지 않으려고 합니다.
+                                </div>
+                                <div class="accordion-desc">
+                                    특히 헷갈렸던 부분이나 시행착오가 있었던 해결 과정은
+                                    간단하게라도 기록해 두고,
+                                    같은 문제가 반복되지 않도록 기준을 정리하려고 합니다.
+                                </div>
+                                <ul class="label-group" aria-label="Solution Keywords">
+                                    <li class="label">Problem Decomposition</li>
+                                    <li class="label">Reasonable Code</li>
+                                    <li class="label">AI-Assisted Workflow</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" aria-labelledby="footer-heading">
+        <h2 id="footer-heading" class="blind">Contact & Site Info</h2>
+
+        <div class="footer-title" role="presentation">
+            <div class="marquee-wrapper polyw">
+                <p>&copy; Shin Yujin</p>
+                <p aria-hidden="true">Portfolio</p>
+                <p aria-hidden="true">&copy; Shin Yujin</p>
+                <p aria-hidden="true">Portfolio</p>
+                <p aria-hidden="true">&copy; Shin Yujin</p>
+                <p aria-hidden="true">Portfolio</p>
+            </div>
+        </div>
+
+        <div class="contact-info polys">
+            <ul class="social-list" aria-label="Contact and Social Links">
+                <li class="social-item big-cursor">
+                    <a href="mailto:syj20110@naver.com" class="footer-email upper" title="이메일 보내기">
+                        <span>syj20110@naver.com</span>
+                    </a>
+                </li>
+                <li class="social-item big-cursor">
+                    <a href="tel:+821057608751" class="footer-phone" title="전화 걸기">
+                        <span>+82 10-5760-8751</span>
+                    </a>
+                </li>
+                <li class="social-item big-cursor">
+                    <a href="https://github.com/yuorang" class="social-link upper" target="_blank" title="깃허브 새 창 열림">
+                        github
+                        <img class="footer-sns_arrow" src="./assets/imgs/work-arrow.svg" alt="">
+                    </a>
+                </li>
+                <li class="social-item big-cursor">
+                    <a href="https://oxidized-lock-df6.notion.site/2fcd289ff59880f488eec1f29e109481?source=copy_link"
+                        class="social-link upper" target="_blank" title="노션 포트폴리오 새 창 열림">
+                        notion
+                        <img class="footer-sns_arrow" src="./assets/imgs/work-arrow.svg" alt="">
+                    </a>
+                </li>
+                <li class="social-item">
+                    <div class="copyright">&copy; 2026 Yujin Shin. All rights reserved.</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-cta">
+            <div class="no-cursor">
+                <a href="#" class="backToTop btn-cta upper" aria-label="페이지 맨 위로 이동">
+                    <span class="text">top</span>
+                    <span class="btn-arrow" aria-hidden="true">
+                        <svg class="btn-top_default" width="12" height="7" viewBox="0 0 12 7" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.53033 0.46957C6.23744 0.176677 5.76256 0.176677 5.46967 0.46957L0.696699 5.24254C0.403806 5.53543 0.403806 6.01031 0.696699 6.3032C0.989593 6.59609 1.46447 6.59609 1.75736 6.3032L6 2.06056L10.2426 6.3032C10.5355 6.59609 11.0104 6.59609 11.3033 6.3032C11.5962 6.01031 11.5962 5.53543 11.3033 5.24254L6.53033 0.46957ZM6.75 1L6.75 0.9999L5.25 0.9999L5.25 1L6.75 1Z"
+                                fill="white"></path>
+                        </svg>
+                        <svg class="btn-top_hover" width="12" height="7" viewBox="0 0 12 7" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.53033 0.46957C6.23744 0.176677 5.76256 0.176677 5.46967 0.46957L0.696699 5.24254C0.403806 5.53543 0.403806 6.01031 0.696699 6.3032C0.989593 6.59609 1.46447 6.59609 1.75736 6.3032L6 2.06056L10.2426 6.3032C10.5355 6.59609 11.0104 6.59609 11.3033 6.3032C11.5962 6.01031 11.5962 5.53543 11.3033 5.24254L6.53033 0.46957ZM6.75 1L6.75 0.9999L5.25 0.9999L5.25 1L6.75 1Z"
+                                fill="white"></path>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+    </footer>
+</body>
+
+</html>

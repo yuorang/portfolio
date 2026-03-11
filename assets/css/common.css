@@ -1,0 +1,101 @@
+   /* FONTS & RESET */
+   @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+
+   .poly {
+       font-family: "PolySans Neutral", sans-serif;
+       font-weight: normal;
+   }
+
+   .polyw {
+       font-family: "PolySans Neutral Wide", sans-serif;
+       font-weight: normal;
+   }
+
+   .polys {
+       font-family: "PolySans Slim", sans-serif;
+       font-weight: normal;
+   }
+
+   .upper {
+       text-transform: uppercase;
+   }
+
+   /* BODY */
+   body {
+       background-color: #141414;
+       color: #fff;
+       font-family: "Pretendard Variable", Pretendard, sans-serif;
+       font-weight: 600;
+       transition: 0.5s background-color;
+       -webkit-font-smoothing: antialiased;
+   }
+
+   body.dark {
+       background-color: #ffffff;
+       color: #141414;
+   }
+
+   body .arrow-icon {
+       filter: invert(1);
+   }
+
+   body.dark .arrow-icon {
+       filter: invert(0);
+   }
+
+   /* 스크린 리더용 숨김 텍스트*/
+   .blind {
+       position: absolute;
+       width: 1px;
+       height: 1px;
+       padding: 0;
+       margin: -1px;
+       overflow: hidden;
+       clip: rect(0, 0, 0, 0);
+       white-space: nowrap;
+       border: 0;
+   }
+
+   /* SCROLLBAR */
+   ::-webkit-scrollbar {
+       width: 12px;
+   }
+
+   ::-webkit-scrollbar-track {
+       background: #1a1a1a;
+   }
+
+   ::-webkit-scrollbar-thumb {
+       background: #eaa4b0;
+   }
+
+   /* CUSTOM CURSOR */
+   .cursor-trail {
+       position: fixed;
+       top: 0;
+       left: 0;
+
+       width: 30px;
+       height: 30px;
+       border-radius: 50%;
+       background: #eaa4b0;
+
+       pointer-events: none;
+       z-index: 9999;
+
+       /* mix-blend-mode: difference; */
+
+       opacity: 0.5;
+       transform: translate(-50%, -50%) scale(1);
+       transition: transform 0.3s ease, opacity 0.3s ease;
+   }
+
+   /* JS class 토글로 제어 */
+   .cursor-trail.is-hidden {
+       opacity: 0;
+   }
+
+   .cursor-trail.is-big {
+       transform: translate(-50%, -50%) scale(4);
+   }
