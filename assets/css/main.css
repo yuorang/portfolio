@@ -603,14 +603,6 @@
         }
 
         /* 마우스 호버 이미지 커서 (터치 기기 환경이므로 비활성화) */
-        /* .item-cursor_img,
-        .item-cursor_img01,
-        .item-cursor_img02,
-        .item-cursor_img03,
-        .item-cursor_img04 {
-            display: none !important;
-            box-shadow: none !important;
-        } */
         .cursor-preview {
             display: none !important;
             box-shadow: none !important;
