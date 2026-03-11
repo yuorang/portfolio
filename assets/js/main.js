@@ -313,29 +313,31 @@ $(function () {
     // --- 카드 호버 시 프리뷰 이미지 마우스 추적 ---
     const preview = document.querySelector('.cursor-preview');
 
-    // 마우스 호버가 가능한 기기(PC)에서만 실행
-    if (window.matchMedia("(hover: hover)").matches) {
-        document.querySelectorAll('.works-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                const imgPath = card.dataset.preview;
-                preview.style.backgroundImage = `url(${imgPath})`;
-                gsap.to(preview, { opacity: 1, duration: 0.2 });
-            });
+    document.querySelectorAll('.works-card').forEach(card => {
 
-            card.addEventListener('mousemove', (e) => {
-                gsap.to(preview, {
-                    x: e.clientX,
-                    y: e.clientY,
-                    duration: 0.2,
-                    ease: "power2.out"
-                });
-            });
+        card.addEventListener('mouseenter', () => {
 
-            card.addEventListener('mouseleave', () => {
-                gsap.to(preview, { opacity: 0, duration: 0.2 });
+            const imgPath = card.dataset.preview;
+            preview.style.backgroundImage = `url(${imgPath})`;
+
+            gsap.to(preview, { opacity: 1, duration: 0.2 });
+        });
+
+        card.addEventListener('mousemove', (e) => {
+
+            gsap.to(preview, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.2,
+                ease: "power2.out"
             });
         });
-    }
+
+        card.addEventListener('mouseleave', () => {
+
+            gsap.to(preview, { opacity: 0, duration: 0.2 });
+        });
+    });
 
     // --- 섹션 05: MY APPROACH 애니메이션 ---
     const sect05 = gsap.timeline({

@@ -609,6 +609,7 @@
         .item-cursor_img03,
         .item-cursor_img04 {
             display: none !important;
+            box-shadow: none !important;
         }
 
         /* section05 */
