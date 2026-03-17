@@ -1,15 +1,76 @@
 $(function () {
-    // --- 부드러운 스크롤 (Lenis) 설정 ---
-    const lenis = new Lenis();
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
+    // Lenis 및 GSAP 설정
+    gsap.registerPlugin(ScrollTrigger);
+
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
     });
+
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
 
-    // --- 커스텀 마우스 커서 설정 ---
-    const trail = document.querySelector(".cursor-trail");
+    const backToTopBtn = document.querySelector(".backToTop");
+    const motionTexts = document.querySelectorAll(".motionText");
+    const section03 = document.querySelector("#section03");
+    const header = document.querySelector("header");
 
+    // 스크롤 이벤트 및 ScrollTrigger 생성
+
+    // Back to top 버튼 및 섹션03 텍스트 토글 (Lenis 스크롤 이벤트에 통합)
+    lenis.on("scroll", ({ scroll }) => {
+        if (scroll > 300) {
+            gsap.to(backToTopBtn, { opacity: 1, pointerEvents: 'auto', duration: 0.3 });
+        } else {
+            gsap.to(backToTopBtn, { opacity: 0, pointerEvents: 'none', duration: 0.3 });
+        }
+
+        // 섹션03 모션텍스트
+        const sectionRect = section03.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const scrollY = scroll;
+        const docHeight = document.documentElement.scrollHeight;
+
+        motionTexts.forEach(text => {
+            // 페이지 맨 밑에서는 무조건 보이게
+            if (scrollY + windowHeight >= docHeight - 5) {
+                text.classList.remove("hide");
+            }
+            // section03 화면 안에 들어가면 숨김
+            else if (sectionRect.top < windowHeight && sectionRect.bottom > 0) {
+                text.classList.add("hide");
+            }
+            // section03 위로 올라가면 다시 보이게
+            else if (sectionRect.top >= windowHeight) {
+                text.classList.remove("hide");
+            }
+            // section03 아래로 지나가면 계속 숨김
+            else {
+                text.classList.add("hide");
+            }
+        });
+    });
+
+    // 헤더 숨김/노출
+    ScrollTrigger.create({
+        start: "top -80",
+        onUpdate: self => {
+            if (self.direction === 1 && !header.classList.contains("hide")) {
+                header.classList.add("hide");
+            } else if (self.direction === -1 && header.classList.contains("hide")) {
+                header.classList.remove("hide");
+            }
+        }
+    });
+
+    // 레이아웃 리프레시 (스크롤 좌표 재계산)
+    window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+    });
+
+    // 커스텀 마우스 커서 설정
+    const trail = document.querySelector(".cursor-trail");
 
     let mouse = { x: 0, y: 0 };
     let pos = { x: 0, y: 0 };
@@ -44,7 +105,6 @@ $(function () {
         });
     });
 
-
     // big-cursor
     const bigSections = document.querySelectorAll(".big-cursor");
 
@@ -57,7 +117,8 @@ $(function () {
             trail.classList.remove("is-big");
         });
     });
-    // --- 섹션 04 ~ 05 구간 배경색 반전 처리 ---
+
+    // 섹션 04 ~ 05 구간 배경색 반전
     ScrollTrigger.create({
         trigger: "#section04",
         start: "0% 40%",
@@ -70,47 +131,17 @@ $(function () {
         },
     });
 
-
-    // --- 랜딩 인트로 애니메이션 ---
-    gsap.registerPlugin(ScrollTrigger);
-
-    // 최초 진입시 모든 방식의 스크롤 차단
-    document.body.style.overflow = "hidden";
-    document.body.style.height = "100vh";
-    document.body.style.position = "fixed";
-    document.body.style.width = "100%";
-    document.body.style.top = "0";
-    document.body.style.left = "0";
-
-    function preventScroll(e) {
-        e.preventDefault();
-    }
-    window.addEventListener('wheel', preventScroll, { passive: false });
-    window.addEventListener('touchmove', preventScroll, { passive: false });
-    window.addEventListener('keydown', function (e) {
-        // 스페이스, 방향키, PgUp, PgDn, Home, End 키 차단
-        if ([32, 33, 34, 35, 36, 37, 38, 39, 40].includes(e.keyCode)) {
-            e.preventDefault();
-        }
-    }, { passive: false });
+    lenis.stop();
+    document.documentElement.classList.add('lenis-stop');
 
     const landing = gsap.timeline({
-        defaults: { ease: "power3.out" },
         onComplete: function () {
-            // 애니메이션 종료 후 스크롤 다시 허용
-            document.body.style.overflow = "";
-            document.body.style.height = "";
-            document.body.style.position = "";
-            document.body.style.width = "";
-            document.body.style.top = "";
-            document.body.style.left = "";
-
-            window.removeEventListener('wheel', preventScroll, { passive: false });
-            window.removeEventListener('touchmove', preventScroll, { passive: false });
+            lenis.start();
+            ScrollTrigger.refresh();
+            document.documentElement.classList.remove('lenis-stop');
         }
     });
 
-    // 랜딩 시퀀스 실행
     landing.to({}, { duration: 0.2 })
         .to(".intro-title .text", {
             x: 0,
@@ -139,87 +170,36 @@ $(function () {
             display: "none"
         });
 
-    // 헤더 스크롤에 따른 숨김처리
-    let lastScroll = 0;
-    const header = document.querySelector("header");
 
-    window.addEventListener("scroll", () => {
-        let currentScroll = window.pageYOffset;
+    // 헤더 네비게이션 및 햄버거 메뉴
+    $('.hamburger').click(function (e) {
+        e.preventDefault();
+        $('.nav-mobile-overlay').toggleClass('show');
+        $(this).toggleClass('active');
 
-        if (currentScroll > lastScroll) {
-            // 스크롤 내림
-            header.classList.add("hide");
+        // 메뉴 오픈 시 본문 스크롤 방지
+        if ($('.nav-mobile-overlay').hasClass('show')) {
+            $('body').css('overflow', 'hidden');
         } else {
-            // 스크롤 올림
-            header.classList.remove("hide");
-        }
-
-        lastScroll = currentScroll;
-    });
-    // --- 헤더 네비게이션 및 햄버거 메뉴 ---
-    $(function () {
-        $('.hamburger').click(function (e) {
-            e.preventDefault();
-            $('.nav-mobile-overlay').toggleClass('show');
-            $(this).toggleClass('active');
-
-            // 메뉴 오픈 시 본문 스크롤 방지
-            if ($('.nav-mobile-overlay').hasClass('show')) {
-                $('body').css('overflow', 'hidden');
-            } else {
-                $('body').css('overflow', 'auto');
-            }
-        });
-
-        // 메뉴 링크 클릭 시 메뉴 닫기
-        $('.nav-mobile .mo-menu-link').click(function () {
-            $('.nav-mobile-overlay').removeClass('show');
-            $('.hamburger').removeClass('active');
-
-            // 일반 스크롤 복구
             $('body').css('overflow', 'auto');
-
-            // 만약 상단에 선언한 lenis 인스턴스가 있다면 스크롤 재개
-            if (typeof lenis !== 'undefined') {
-                lenis.start();
-            }
-        });
+        }
     });
 
-    //모션텍스트
-    const motionTexts = document.querySelectorAll(".motionText");
-    const section03 = document.querySelector("#section03");
+    // 메뉴 링크 클릭 시 메뉴 닫기
+    $('.nav-mobile .mo-menu-link').click(function () {
+        $('.nav-mobile-overlay').removeClass('show');
+        $('.hamburger').removeClass('active');
 
-    window.addEventListener("scroll", () => {
-        const sectionRect = section03.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const scrollY = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight;
+        // 일반 스크롤 복구
+        $('body').css('overflow', 'auto');
 
-        motionTexts.forEach(text => {
-            // 페이지 맨 밑에서는 무조건 보이게
-            if (scrollY + windowHeight >= docHeight - 5) {
-                text.classList.remove("hide");
-            }
-            // section03 화면 안에 들어가면 숨김
-            else if (sectionRect.top < windowHeight && sectionRect.bottom > 0) {
-                text.classList.add("hide");
-            }
-            // section03 위로 올라가면 다시 보이게
-            else if (sectionRect.top >= windowHeight) {
-                text.classList.remove("hide");
-            }
-            // section03 아래로 지나가면 계속 숨김
-            else {
-                text.classList.add("hide");
-            }
-        });
+        // 만약 상단에 선언한 lenis 인스턴스가 있다면 스크롤 재개
+        if (typeof lenis !== 'undefined') {
+            lenis.start();
+        }
     });
 
     // visual_vedio
-
-    gsap.registerPlugin(ScrollTrigger);
-
     gsap.to(".visual_vedio", {
         scrollTrigger: {
             trigger: "#section03",
@@ -231,57 +211,37 @@ $(function () {
         ease: "none"
     });
 
-    // --- 섹션 03: ABOUT 텍스트 애니메이션 ---
+    // ABOUT 텍스트 애니메이션
     function splitWordsToSpans(selector) {
-        // querySelector 대신 querySelectorAll을 사용하여 모든 p태그 대응
         const elements = document.querySelectorAll(selector);
-        if (elements.length === 0) return;
 
         elements.forEach(el => {
             if (el.classList.contains("animated-split")) return;
 
-            let html = "";
-            // trim() 후 innerHTML을 사용하여 내부 <br> 태그를 유지하며 쪼갬
-            el.innerHTML.trim().split(/\s+/).forEach((word, idx, arr) => {
-                // <br> 태그가 포함된 단어거나 <br> 자체일 경우 처리
-                if (word.includes("<br")) {
-                    html += "<br> ";
-                } else {
-                    html += `<span class="split-word" style="display:inline-block; white-space:pre;">${word}${idx !== arr.length - 1 ? " " : ""}</span>`;
-                }
-            });
-            el.innerHTML = html;
+            const originalHTML = el.innerHTML;
+            const newHTML = originalHTML.replace(/(\S+)/g, '<span class="split-word">$1</span>');
+
+            el.innerHTML = newHTML;
             el.classList.add("animated-split");
         });
     }
 
-    // p.desc를 대상으로 실행
+    // 실행
     splitWordsToSpans("#section03 .desc");
-    // id 대신 클래스로 모든 p태그 선택
 
-    // 초기 세팅 (p태그가 여러 개이므로 전체 선택자 사용)
-    gsap.set("#section03 .desc .split-word", { y: 0, opacity: 0.2 });
-
-    // 스크롤 시 텍스트 순차 등장 (Scrub 적용)
-    gsap.timeline({
+    gsap.to("#section03 .desc .split-word", {
+        opacity: 1,
+        stagger: 0.02,
         scrollTrigger: {
             trigger: "#section03",
-            start: "top 40%",
-            end: "bottom 50%",
-            scrub: 1,
+            start: "top 65%",
+            end: "top 20%",
+            scrub: 1.5,
+            // markers: true
         }
-    })
-        .to("#section03 .desc .split-word", {
-            // 모든 p.desc의 단어들에 애니메이션 적용
-            opacity: 1,
-            stagger: 0.01,
-            // 단어가 많으므로 stagger 값을 약간 조절해서 자연스럽게 설정
-            duration: 0.8,
-            ease: "power3.out"
-        }, ">-0.3");
+    });
 
-
-    // --- 섹션 04: FEATURED WORKS 애니메이션 ---
+    // FEATURED WORKS 애니메이션
     const thumb = gsap.timeline({
         scrollTrigger: {
             trigger: ".works-thumb",
@@ -291,11 +251,9 @@ $(function () {
         },
     });
 
-    // 타이틀 수평 이동
     thumb.to(".viewTitle-up", { x: 0 }, 'a')
     thumb.to(".viewTitle-down", { x: 0 }, 'a')
 
-    // 우측 카드 등장 애니메이션
     const works = gsap.timeline({
         scrollTrigger: {
             trigger: ".works .flex-area",
@@ -313,33 +271,27 @@ $(function () {
     // --- 카드 호버 시 프리뷰 이미지 마우스 추적 ---
     const preview = document.querySelector('.cursor-preview');
 
+    const xSetter = gsap.quickSetter(preview, "x", "px");
+    const ySetter = gsap.quickSetter(preview, "y", "px");
+
     document.querySelectorAll('.works-card').forEach(card => {
-
         card.addEventListener('mouseenter', () => {
-
             const imgPath = card.dataset.preview;
             preview.style.backgroundImage = `url(${imgPath})`;
-
-            gsap.to(preview, { opacity: 1, duration: 0.2 });
+            gsap.to(preview, { opacity: 1, duration: 0.3, overwrite: "auto" });
         });
 
         card.addEventListener('mousemove', (e) => {
-
-            gsap.to(preview, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.2,
-                ease: "power2.out"
-            });
+            xSetter(e.clientX);
+            ySetter(e.clientY);
         });
 
         card.addEventListener('mouseleave', () => {
-
-            gsap.to(preview, { opacity: 0, duration: 0.2 });
+            gsap.to(preview, { opacity: 0, duration: 0.3, overwrite: "auto" });
         });
     });
 
-    // --- 섹션 05: MY APPROACH 애니메이션 ---
+    // MY APPROACH 애니메이션
     const sect05 = gsap.timeline({
         scrollTrigger: {
             trigger: "#section05",
@@ -355,83 +307,58 @@ $(function () {
         stagger: 0.5,
     })
 
-    // 좌측 카테고리 강조 효과 (아코디언 위치에 따라)
-    const serviceCategories = document.querySelectorAll("#section05 .left .service-category");
-    const accordionItems = document.querySelectorAll("#section05 .arcodien-list .accordion-item");
+    // 좌측 카테고리 강조 효과
+    const categories = document.querySelectorAll(".service-category");
 
-    serviceCategories.forEach((el) => { el.style.opacity = 0.5; });
-
-    accordionItems.forEach((item, idx) => {
+    document.querySelectorAll(".accordion-item").forEach((item, idx) => {
         ScrollTrigger.create({
             trigger: item,
-            start: "top top",
-            onEnter: () => {
-                serviceCategories.forEach((el, i) => {
-                    el.style.opacity = (i <= idx) ? 1 : 0.5;
-                });
-            },
-            onEnterBack: () => {
-                serviceCategories.forEach((el, i) => {
-                    el.style.opacity = (i <= idx) ? 1 : 0.5;
-                });
-            },
+            start: "top center",
+            end: "bottom center",
+            onToggle: ({ isActive }) => {
+                if (isActive) {
+                    categories.forEach(el => el.classList.remove("is-active"));
+                    if (categories[idx]) {
+                        categories[idx].classList.add("is-active");
+                    }
+                }
+            }
         });
     });
 
     // 타이틀 블러 효과
     document.querySelectorAll('.service-title').forEach(title => {
-        const text = title.innerText.trim();
-        title.innerHTML = [...text].map(char => {
-            if (char === ' ') {
-                return '<span class="service-title-char" style="opacity:0;filter:blur(5px);display:inline-block;">&nbsp;</span>';
-            } else {
-                return `<span class="service-title-char" style="opacity:0;filter:blur(5px);display:inline-block">${char}</span>`;
-            }
-        }).join('');
+        title.innerHTML = title.textContent.replace(/(\S)/g, '<span class="service-title-char">$1</span>');
 
         const chars = title.querySelectorAll('.service-title-char');
+
         gsap.fromTo(chars,
-            { opacity: 0, filter: "blur(5px)" },
+            {
+                opacity: 0,
+                filter: "blur(5px)",
+            },
             {
                 opacity: 1,
                 filter: "blur(0px)",
-                duration: 0.6,
-                stagger: 0.05,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.04,
                 ease: "power2.out",
                 scrollTrigger: {
-                    trigger: "#section05",
-                    start: "top 50%",
+                    trigger: title,
+                    start: "top 80%",
                     toggleActions: "play none none reset",
                 }
             }
         );
     });
 
-    // 아코디언 토글 기능
-    $(function () {
-        $('.accordion-item').click(function (e) {
-            e.preventDefault();
-            const $item = $(this).closest('.accordion-item');
-            $('.accordion-item').not($item).removeClass('is-open');
-            $item.toggleClass('is-open');
-        });
-    });
-
-    // --- 상단 이동 버튼 (Back to Top) ---
-    const backToTopBtn = document.querySelector('.backToTop');
-
-    backToTopBtn.addEventListener('click', (e) => {
+    // 아코디언 토글
+    $('.accordion-item').click(function (e) {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const $item = $(this).closest('.accordion-item');
+        $('.accordion-item').not($item).removeClass('is-open');
+        $item.toggleClass('is-open');
     });
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopBtn.style.opacity = '1';
-            backToTopBtn.style.pointerEvents = 'auto';
-        } else {
-            backToTopBtn.style.opacity = '0';
-            backToTopBtn.style.pointerEvents = 'none';
-        }
-    });
 })
